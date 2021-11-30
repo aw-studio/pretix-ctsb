@@ -58,17 +58,16 @@ class OrderController
             'positions.*.answers.*.answer'                => 'required',
         ]);
 
-        $response = $this->api->post($this->url, $request->all());
+        $response = $this->api->post($this->url, $validated);
 
         // Determine if the status code is >= 400...
         if ($response->failed()) {
-            // TODO:
             throw new Exception('failed');
         }
 
         $this->resendMail($response->json()['code']);
 
-        return Redirect::route('success', ['code' => $response->json()['secret']])
+        return Redirect::route('success', ['code' => $response->json()['positions'][0]['secret']])
             ->with([
                 'downloads' => $response->json()['downloads'],
             ]);
