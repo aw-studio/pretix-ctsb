@@ -1,5 +1,9 @@
 <template>
-    <Question v-for="question in stage" :question="question" />
+    <Question
+        v-for="(question, index) in stage"
+        :question="question"
+        :index="index"
+    />
 </template>
 
 <script setup lang="ts">

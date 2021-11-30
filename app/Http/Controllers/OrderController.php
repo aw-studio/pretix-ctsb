@@ -45,7 +45,17 @@ class OrderController
     {
         // TODO:
         $validated = $request->validate([
-            'email' => 'required|confirmed|email',
+            'email'                                       => 'required|confirmed|email',
+            'email_confirmation'                          => 'required|email',
+            'locale'                                      => 'required',
+            'sales_channel'                               => 'required',
+            'fees'                                        => 'required',
+            'payment_provider'                            => 'required',
+            'positions'                                   => 'required',
+            'positions.*.subevent'                        => 'required',
+            'positions.*.attendee_name_parts.given_name'  => 'required',
+            'positions.*.attendee_name_parts.family_name' => 'required',
+            'positions.*.answers.*.answer'                => 'required',
         ]);
 
         $response = $this->api->post($this->url, $request->all());
@@ -53,15 +63,15 @@ class OrderController
         // Determine if the status code is >= 400...
         if ($response->failed()) {
             // TODO:
-            // dd($request->all());
-            dd($response->json());
-
             throw new Exception('failed');
         }
 
         $this->resendMail($response->json()['code']);
 
-        return Redirect::back()->with('qr', 'lorem');
+        return Redirect::route('success', ['code' => $response->json()['secret']])
+            ->with([
+                'downloads' => $response->json()['downloads'],
+            ]);
     }
 
     /**

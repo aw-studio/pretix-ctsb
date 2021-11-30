@@ -42,8 +42,8 @@ export interface TBooking {
 }
 
 export const form = useForm<TBooking>({
-    email: null,
-    email_confirmation: null,
+    email: null, // <- this
+    email_confirmation: null, // <- this
     locale: "de",
     sales_channel: "web",
     fees: [
@@ -64,12 +64,12 @@ export const form = useForm<TBooking>({
         price: "0.00",
         attendee_name_parts: {
           _scheme: "given_family", 
-          given_name: "Givenname",
-          family_name: "Familyname"
+          given_name: null, // <- this
+          family_name: null // <- this
         },
-        attendee_email: null,
+        attendee_email: null, // <- this
         addon_to: null,
-        answers: [],
+        answers: [], // <- this
         subevent: null // <- this
       }
     ]
@@ -80,6 +80,7 @@ export interface TQuestionConfig {
   question: number;
   question_identifier: string;
   type: string;
+  value: string;
 }
 export interface TInitFormConfig {
   organizers: string;
@@ -90,10 +91,10 @@ export interface TInitFormConfig {
   questions: any[];
 }
 
-const initAnswer = (answer: TAnswer) => {
+const initAnswer = (answer: TQuestionConfig) => {  
   return {
     question: answer.question,
-    answer: null,
+    answer: answer.value || null,
     question_identifier: answer.question_identifier,
     options: [],
     option_identifiers: []
@@ -101,8 +102,8 @@ const initAnswer = (answer: TAnswer) => {
 }
 
 const initAnswers = (questions: any[]) => {
-  return questions.map((stage: TAnswer[]) => {
-    return stage.map((question: TAnswer) => initAnswer(question));
+  return questions.map((stage: TQuestionConfig[]) => {
+    return stage.map((question: TQuestionConfig) => initAnswer(question));
    }).flat()
 }
 

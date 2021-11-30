@@ -1,7 +1,11 @@
 <template>
     <div class="p-4 border">
-        <label>{{ question.question_identifier }}</label>
-        <component :is="as" v-model="model.answer" />
+        <component
+            :is="as"
+            v-model="model.answer"
+            :placeholder="question.question_identifier"
+            :errors="form.errors[`positions.0.answers.${index}.answer`]"
+        />
     </div>
 </template>
 
@@ -15,6 +19,10 @@ import Date from './Date.vue';
 const props = defineProps({
     question: {
         type: Object as PropType<TQuestionConfig>,
+        required: true,
+    },
+    index: {
+        type: Number,
         required: true,
     },
 });

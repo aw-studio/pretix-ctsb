@@ -1,5 +1,6 @@
 <template>
     <input v-model="model" type="checkbox" value="1" />
+    {{ placeholder }}
 </template>
 
 <script setup lang="ts">
