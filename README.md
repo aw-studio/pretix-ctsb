@@ -24,7 +24,7 @@ Add your favorite `port` the `Order-API-URL` and your super secret to `.env`:
 
 ```
 APP_PORT=8080
-PRETIX_ORDER_API_URL=https://pretix.eu/api/v1/organizers/ctsb/events/mobil4/orders
+PRETIX_ORDER_API_URL=https://pretix.eu/api/v1/organizers/ctsb/events/mobil4/orders/
 PRETIX_SECRET=correcthorsebatterystaple
 ```
 
