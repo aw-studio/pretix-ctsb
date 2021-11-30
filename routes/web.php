@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Pages\AppController;
 use App\Http\Controllers\Pages\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class)->name('home');
+// Route::get('/', HomeController::class)->name('home');
+Route::get('/{organizers}/{event}/{subevent}', AppController::class)->name('app');
 Route::post('/orders', [OrderController::class, 'create'])->name('orders.create');

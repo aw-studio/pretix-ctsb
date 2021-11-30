@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
@@ -35,27 +36,32 @@ class OrderController
     }
 
     /**
-     * Create a new order by posting a valid request to the the pretix-API.
+     * Create a new order by posting a validated request to the the pretix-API.
      *
      * @param  Request $request
      * @return void
      */
     public function create(Request $request)
     {
-        // $validated = $request->validate([
-
-        // ]);
+        // TODO:
+        $validated = $request->validate([
+            'email' => 'required|confirmed|email',
+        ]);
 
         $response = $this->api->post($this->url, $request->all());
 
         // Determine if the status code is >= 400...
         if ($response->failed()) {
             // TODO:
+            // dd($request->all());
+            dd($response->json());
+
+            throw new Exception('failed');
         }
 
-        $this->resendMail($response->body()['code']);
+        $this->resendMail($response->json()['code']);
 
-        return Redirect::route('home');
+        return Redirect::back()->with('qr', 'lorem');
     }
 
     /**
