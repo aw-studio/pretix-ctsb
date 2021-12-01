@@ -55,7 +55,7 @@ class OrderController
             'positions.*.subevent'                        => 'required',
             'positions.*.attendee_name_parts.given_name'  => 'required',
             'positions.*.attendee_name_parts.family_name' => 'required',
-            'positions.*.answers.*.answer'                => 'required',
+            // 'positions.*.answers.*.answer'                => 'required',
         ]);
 
         $response = $this->api->post($this->url, $validated);
