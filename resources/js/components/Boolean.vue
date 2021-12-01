@@ -1,9 +1,9 @@
 <template>
     <div
-        class="px-6 py-3 mb-1 text-sm border-4 border-white rounded-md shadow"
+        class="px-6 py-6 mb-1 text-sm rounded-md"
         :class="{
-            'bg-white': !isActive,
-            'bg-blue-300 text-white border-blue-300': isActive,
+            'bg-blue-100': !isActive,
+            ' bg-gradient-to-tr from-blue-400 to-blue-300 text-white': isActive,
         }"
     >
         <label
@@ -21,18 +21,17 @@
                 <div class="mb-3 font-bold">{{ label }}</div>
                 <div
                     :class="{
-                        'text-gray': !isActive,
+                        ' text-gray ': !isActive,
                     }"
                 >
                     <slot />
                 </div>
             </div>
             <div
-                class="w-6 h-6 mr-4 -ml-3 rounded-full"
+                class="w-6 h-6 mr-4 -ml-3 rounded-xs"
                 :class="{
                     'bg-white bg-opacity-25': isActive,
-                    'bg-blue-300 border border-blue-300 bg-opacity-10':
-                        !isActive,
+                    'bg-blue-100 border border-gray ': !isActive,
                 }"
             >
                 <svg

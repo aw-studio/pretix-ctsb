@@ -87,19 +87,22 @@
                             das Ergebnis mit deinem Namen oder ohne deinen Namen
                             übermitteln sollen.
                             <div
-                                class="flex w-full p-1 mt-4 space-x-1 bg-blue-500 bg-opacity-25 rounded-sm  text-blue"
+                                class="flex w-full p-1 mt-4 space-x-1 bg-blue-600 bg-opacity-50 rounded-sm  text-blue"
                             >
                                 <button
-                                    class="flex items-center justify-center w-1/2 px-2 py-2 text-white bg-blue-600  rounded-xs"
+                                    class="flex items-center justify-center w-1/2 px-2 py-2  rounded-xs"
                                     :class="{
-                                        'bg-opacity-20':
+                                        'text-white opacity-80':
                                             getAttr('consent-cwa-name')
                                                 .answer == 'False',
+                                        'bg-white text-blue-600':
+                                            getAttr('consent-cwa-name')
+                                                .answer == 'True',
                                     }"
                                     @click="toggleCwa('consent-cwa-name')"
                                 >
                                     <div
-                                        class="w-4 h-4 bg-white rounded-full  bg-opacity-20"
+                                        class="w-4 h-4 bg-blue-100 rounded-full  bg-opacity-20"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -119,16 +122,19 @@
                                     <span class="w-full">MIT Namen</span>
                                 </button>
                                 <button
-                                    class="flex items-center justify-center w-1/2 px-2 py-2 text-white bg-blue-600  rounded-xs"
+                                    class="flex items-center justify-center w-1/2 px-2 py-2  rounded-xs"
                                     :class="{
-                                        'bg-opacity-20':
+                                        'text-white opacity-80':
                                             getAttr('consent-cwa-pseudo')
                                                 .answer == 'False',
+                                        'bg-white text-blue-600':
+                                            getAttr('consent-cwa-pseudo')
+                                                .answer == 'True',
                                     }"
                                     @click="toggleCwa('consent-cwa-pseudo')"
                                 >
                                     <div
-                                        class="w-4 h-4 bg-white rounded-full  bg-opacity-20"
+                                        class="w-4 h-4 bg-blue-100 rounded-full  bg-opacity-20"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -173,6 +179,25 @@
                     }"
                 >
                     Senden
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        class="w-6 h-6 ml-4 fill-current -mr-1-6 rotate"
+                        :class="{
+                            'opacity-0': !form.processing,
+                        }"
+                        viewBox="0 0 100 100"
+                    >
+                        <circle
+                            cx="50"
+                            cy="50"
+                            fill="none"
+                            stroke="#fff"
+                            stroke-width="10"
+                            r="35"
+                            stroke-dasharray="164.93361431346415 56.97787143782138"
+                        ></circle>
+                    </svg>
                 </Button>
             </Tab>
         </Tabs>
@@ -288,3 +313,17 @@ onBeforeMount(() => {
     initForm(props.config);
 });
 </script>
+
+<style>
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.rotate {
+    animation: rotating 0.7s linear infinite;
+}
+</style>

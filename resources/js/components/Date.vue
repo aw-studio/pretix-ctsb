@@ -101,10 +101,16 @@ const dayValid = computed(() => {
     if (day.value?.toString().length == 2) {
         return !validDayNumbers.includes(day.value) ? 'false' : null;
     }
+    if (day.value?.toString().length > 2) {
+        return 'false';
+    }
 });
 const monthValid = computed(() => {
     if (month.value?.toString().length == 2) {
         return !validMonthNumbers.includes(month.value) ? 'false' : null;
+    }
+    if (month.value?.toString().length > 2) {
+        return 'false';
     }
 });
 const yearValid = computed(() => {
@@ -112,6 +118,9 @@ const yearValid = computed(() => {
         return parseInt(year.value) > 1900 && parseInt(year.value) < 2020
             ? null
             : 'false';
+    }
+    if (year.value?.toString().length > 4) {
+        return 'false';
     }
 });
 
@@ -131,6 +140,7 @@ const date = computed(() => {
     if (day.value?.toString().length < 2) {
         return;
     }
+
     if (year.value && month.value && day.value) {
         return `${year.value}-${month.value}-${day.value}`;
     }

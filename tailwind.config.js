@@ -59,6 +59,7 @@ module.exports = {
             xl: ['31px', '33px'],
         },
         boxShadow: {
+            top: '0px -7px 10px 0px rgba(0,0,0,0.11)',
             DEFAULT: '0px 0px 19px 0px rgba(0,0,0,0.08)',
         },
         extend: {

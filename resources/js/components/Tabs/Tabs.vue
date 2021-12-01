@@ -20,13 +20,16 @@
             </svg>
             Zurück
         </button>
-        <div v-if="state.selectedIndex" class="tracking-widest uppercase">
+        <div
+            v-if="state.selectedIndex"
+            class="text-xs tracking-widest uppercase"
+        >
             Schritt {{ state.selectedIndex + 1 }}/3
         </div>
     </div>
-    <div ref="childs">
+    <div ref="childs" class="z-10">
         <Intro v-if="state.selectedIndex == 0" />
-        <div class="bg-white shadow rounded-t-md">
+        <div class="bg-white shadow-top rounded-t-md">
             <div class="flex flex-col justify-between h-full px-4 py-6">
                 <slot />
                 <div v-if="showArrows(state.selectedIndex)">
