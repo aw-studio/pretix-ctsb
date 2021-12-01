@@ -15,47 +15,41 @@ return [
             'subevent'   => 2701127,
             'tax_rule'   => 29737,
             'questions'  => [
-                [
-
                     [
                         'question'            => 28002,
                         'question_identifier' => 'street-no',
-                        'type'                => 'Text',
                     ],
                     [
                         'question'            => 28003,
                         'question_identifier' => 'zip-city',
-                        'type'                => 'Text',
                     ],
                     [
                         'question'            => 28004,
                         'question_identifier' => 'birthdate',
-                        'type'                => 'Date',
                     ],
                     [
                         'question'            => 28005,
                         'question_identifier' => 'phone',
-                        'type'                => 'Text',
+                    ],
+                    [
+                        'question'            => 28006,
+                        'question_identifier' => 'pass-id',
                     ],
                     [
                         'question'            => 31085,
                         'question_identifier' => 'consent',
-                        'type'                => 'Boolean',
                         'value'               => 'False',
                     ],
                     [
                         'question'            => 31098,
                         'question_identifier' => 'consent-cwa-pseudo',
-                        'type'                => 'Boolean',
                         'value'               => 'False',
                     ],
                     [
                         'question'            => 31111,
                         'question_identifier' => 'consent-cwa-name',
-                        'type'                => 'Boolean',
                         'value'               => 'False',
                     ],
-                ],
             ],
         ],
     ],

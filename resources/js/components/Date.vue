@@ -1,11 +1,32 @@
 <template>
-    <input v-model="year" type="number" />
-    <input v-model="month" type="number" />
-    <input v-model="day" type="number" />
+    <div class="grid grid-cols-3 gap-3">
+        <Text
+            placeholder="TT"
+            v-model="day"
+            type="text"
+            inputmode="decimal"
+            pattern="[0-9]*"
+        />
+        <Text
+            placeholder="MM"
+            v-model="month"
+            type="text"
+            inputmode="decimal"
+            pattern="[0-9]*"
+        />
+        <Text
+            placeholder="YYYY"
+            v-model="year"
+            type="text"
+            inputmode="decimal"
+            pattern="[0-9]*"
+        />
+    </div>
 </template>
 
 <script setup lang="ts">
 import { defineEmits, ref, watch, computed } from 'vue';
+import Text from './Text.vue';
 const props = defineProps({
     modelValue: {
         type: [String],

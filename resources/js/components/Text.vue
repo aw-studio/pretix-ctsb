@@ -2,7 +2,7 @@
     <input
         v-model="model"
         @input="updateInput"
-        class="flex-1 h-10 px-4 py-1 border  focus:outline-none text-gray focus:ring"
+        class="flex-1 h-12 px-4 py-1 text-sm text-black border  border-gray focus:outline-none focus:ring-1 focus:ring-blue-400 rounded-xs"
         :placeholder="placeholder"
         :type="type"
         :class="{

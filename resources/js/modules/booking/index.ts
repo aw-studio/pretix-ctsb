@@ -101,10 +101,8 @@ const initAnswer = (answer: TQuestionConfig) => {
   }
 }
 
-const initAnswers = (questions: any[]) => {
-  return questions.map((stage: TQuestionConfig[]) => {
-    return stage.map((question: TQuestionConfig) => initAnswer(question));
-   }).flat()
+const initAnswers = (questions: TQuestionConfig[]) => {
+  return questions.map((question: TQuestionConfig) => initAnswer(question))
 }
 
 export const initForm = (config: TInitFormConfig) => {  
@@ -113,4 +111,3 @@ export const initForm = (config: TInitFormConfig) => {
   form.positions[0].answers = initAnswers(config.questions)
   form.positions[0].subevent = config.subevent
 }
-

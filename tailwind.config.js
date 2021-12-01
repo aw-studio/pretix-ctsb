@@ -14,7 +14,7 @@ module.exports = {
         },
         borderRadius: {
             xs: '6px',
-            sm: '11px',
+            sm: '14px',
             md: '15px',
             lg: '19px',
             full: '9999px',
@@ -23,30 +23,28 @@ module.exports = {
             white: 'white',
             black: 'black',
             blue: {
-                300: '#ecf5ff',
-                400: '#4a89fd',
-                500: '#3177f1',
-                DEFAULT: '#3177f1',
+                100: '#ecf4ff',
+                200: '#d2d9f5',
+                300: '#6098ff',
+                400: '#5732a3',
+                500: '#4444af',
+                DEFAULT: '#4444af',
             },
             gray: {
-                500: '#9da7d0',
-                DEFAULT: '#9da7d0',
+                500: '#c6c8d5',
+                DEFAULT: '#c6c8d5',
             },
             green: {
-                500: '#00d17a',
-                DEFAULT: '#78FFBF',
+                500: '#03D079',
+                DEFAULT: '#03D079',
             },
             red: {
-                500: '#D4002E',
-                DEFAULT: '#FF8A96',
-            },
-            yellow: {
-                500: '#FFCB18',
-                DEFAULT: '#FFDC65',
+                500: '#FF3265',
+                DEFAULT: '#FF3265',
             },
             orange: {
-                500: '#fba301',
-                DEFAULT: '#fba301',
+                500: '#fba200',
+                DEFAULT: '#fba200',
             },
         },
         fontFamily: {
@@ -54,11 +52,10 @@ module.exports = {
         },
         fontSize: {
             xs: ['10px', '17px'],
-            sm: ['12px', '21px'],
-            base: ['14px', '24px'],
+            sm: ['14px', '21px'],
+            base: ['15px', '24px'],
             lg: ['16px', '24px'],
-            xl: ['25px', '33px'],
-            '2xl': ['28px', '38px'],
+            xl: ['31px', '33px'],
         },
         boxShadow: {
             DEFAULT: '0px 0px 19px 0px rgba(0,0,0,0.08)',
