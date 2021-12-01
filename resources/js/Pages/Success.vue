@@ -65,25 +65,10 @@ const props = defineProps({
     },
 });
 
-const dummy = [
-    {
-        output: 'pdf',
-        url: 'https://pretix.eu/api/v1/organizers/ctsb/events/mobil4/orders/EVZDB/download/pdf/',
-    },
-    {
-        output: 'mobile_pdf',
-        url: 'https://pretix.eu/api/v1/organizers/ctsb/events/mobil4/orders/EVZDB/download/mobile_pdf/',
-    },
-    {
-        output: 'passbook',
-        url: 'https://pretix.eu/api/v1/organizers/ctsb/events/mobil4/orders/EVZDB/download/passbook/',
-    },
-];
-
 const pdf = computed(() => {
-    return dummy.find(item => item.output == 'pdf');
+    return props.downloads.find(item => item.output == 'pdf');
 });
 const passbook = computed(() => {
-    return dummy.find(item => item.output == 'passbook');
+    return props.downloads.find(item => item.output == 'passbook');
 });
 </script>
