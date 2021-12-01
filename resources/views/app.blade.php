@@ -6,7 +6,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="{{ mix('/js/app.js') }}" defer></script>
     </head>
-    <body class="h-screen max-h-screen bg-gradient-to-tr from-blue-400 to-blue-300">
+    <body class="h-screen max-h-screen overflow-hidden bg-gradient-to-tr from-blue-400 to-blue-300">
         @inertia
     </body>
 </html>

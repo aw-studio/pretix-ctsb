@@ -3,7 +3,7 @@
         class="px-6 py-3 mb-1 text-sm border-4 border-white rounded-md shadow"
         :class="{
             'bg-white': !isActive,
-            'bg-blue text-white border-blue': isActive,
+            'bg-blue-300 text-white border-blue-300': isActive,
         }"
     >
         <label
@@ -31,7 +31,8 @@
                 class="w-6 h-6 mr-4 -ml-3 rounded-full"
                 :class="{
                     'bg-white bg-opacity-25': isActive,
-                    'bg-blue border border-blue bg-opacity-10': !isActive,
+                    'bg-blue-300 border border-blue-300 bg-opacity-10':
+                        !isActive,
                 }"
             >
                 <svg

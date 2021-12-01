@@ -1,5 +1,8 @@
 <template>
-    <button
+    <component
+        :is="as"
+        :href="href"
+        target="_blank"
         class="inline-flex items-center justify-center h-12 px-4 text-sm font-medium tracking-wider text-white transition-transform duration-75 transform rounded-sm "
         :class="{
             'bg-orange': orange,
@@ -7,11 +10,13 @@
         }"
     >
         <slot />
-    </button>
+    </component>
 </template>
 
 <script setup lang="ts">
-defineProps({
+import { computed } from 'vue';
+
+const props = defineProps({
     orange: {
         type: Boolean,
         defaul: false,
@@ -20,5 +25,13 @@ defineProps({
         type: Boolean,
         defaul: false,
     },
+    href: {
+        type: String,
+        default: null,
+    },
+});
+
+const as = computed(() => {
+    return props.href == null ? 'button' : 'a';
 });
 </script>

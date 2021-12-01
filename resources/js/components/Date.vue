@@ -122,6 +122,15 @@ const day = ref(props.modelValue?.split('-')?.[2]);
 const emit = defineEmits(['update:modelValue']);
 
 const date = computed(() => {
+    if (year.value?.toString().length < 4) {
+        return;
+    }
+    if (month.value?.toString().length < 2) {
+        return;
+    }
+    if (day.value?.toString().length < 2) {
+        return;
+    }
     if (year.value && month.value && day.value) {
         return `${year.value}-${month.value}-${day.value}`;
     }

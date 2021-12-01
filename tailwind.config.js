@@ -13,8 +13,8 @@ module.exports = {
             center: true,
         },
         borderRadius: {
-            xs: '6px',
-            sm: '14px',
+            xs: '4px',
+            sm: '6px',
             md: '15px',
             lg: '19px',
             full: '9999px',
@@ -28,6 +28,7 @@ module.exports = {
                 300: '#6098ff',
                 400: '#5732a3',
                 500: '#4444af',
+                600: '#232378',
                 DEFAULT: '#4444af',
             },
             gray: {

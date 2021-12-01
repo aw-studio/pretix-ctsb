@@ -1,12 +1,26 @@
 <template>
-    <div class="h-20">
+    <div class="flex items-center justify-between h-20 px-4 text-sm text-white">
         <button
             v-if="state.selectedIndex > 0"
             @click="selectTab(state.selectedIndex - 1)"
+            class="flex items-center"
         >
-            zurück
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                class="w-5 h-5 mr-2 fill-current"
+            >
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                    d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                />
+            </svg>
+            Zurück
         </button>
-        <div v-if="state.selectedIndex">{{ state.selectedIndex + 1 }} / 3</div>
+        <div v-if="state.selectedIndex" class="tracking-widest uppercase">
+            Schritt {{ state.selectedIndex + 1 }}/3
+        </div>
     </div>
     <div ref="childs">
         <Intro v-if="state.selectedIndex == 0" />
