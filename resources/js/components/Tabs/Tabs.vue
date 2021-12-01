@@ -1,5 +1,7 @@
 <template>
-    <div class="flex items-center justify-between h-20 px-4 text-sm text-white">
+    <div
+        class="sticky top-0 flex items-center justify-between px-4 py-5 text-sm text-white "
+    >
         <button
             v-if="state.selectedIndex > 0"
             @click="selectTab(state.selectedIndex - 1)"
@@ -24,10 +26,7 @@
     </div>
     <div ref="childs">
         <Intro v-if="state.selectedIndex == 0" />
-        <div
-            class="overflow-y-scroll bg-white shadow rounded-t-md"
-            id="content"
-        >
+        <div class="bg-white shadow rounded-t-md">
             <div class="flex flex-col justify-between h-full px-4 py-6">
                 <slot />
                 <div v-if="showArrows(state.selectedIndex)">
@@ -116,9 +115,3 @@ onMounted(() => {
     selectTab(0);
 });
 </script>
-
-<style>
-#content {
-    max-height: calc(100vh - 80px);
-}
-</style>

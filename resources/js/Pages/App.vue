@@ -236,8 +236,6 @@ const questions = computed(() => {
 });
 
 const emailValid = computed(() => {
-    // TODO: remove
-    return true;
     if (!validateEmail(form.email)) {
         return false;
     }
