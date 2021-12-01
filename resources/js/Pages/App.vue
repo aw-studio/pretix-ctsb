@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col h-screen">
         <Tabs>
-            <Tab title="1/3" :enabled="true" :finished="true">
+            <Tab title="1/3" :enabled="true">
                 <Text
                     v-model="form.email"
                     placeholder="E-Mail"
@@ -19,7 +19,7 @@
                     an diese E-Mail-Adresse gesendet.
                 </p>
             </Tab>
-            <Tab title="2/3" :enabled="true" :hideState="true">
+            <Tab title="2/3" :enabled="emailValid">
                 <h2 class="py-4 text-lg font-bold text-center">
                     Deine persönlichen Angaben
                 </h2>
@@ -79,12 +79,7 @@
                     </template>
                 </Boolean>
             </Tab>
-            <Tab
-                title="3/3"
-                :enabled="true"
-                :hideState="true"
-                :hideArrows="true"
-            >
+            <Tab title="3/3" :enabled="formFinished" :hideArrows="true">
                 <button
                     @click="form.post('/orders')"
                     class="px-4 py-1 text-white bg-blue"
@@ -130,6 +125,26 @@ const coronaApp = ref(false);
 const questions = computed(() => {
     return props.config.questions;
 });
+
+const emailValid = computed(() => {
+    return true;
+    if (!validateEmail(form.email)) {
+        return false;
+    }
+    return form.email == form.email_confirmation;
+});
+
+const formFinished = computed(() => {
+    return true;
+});
+
+const validateEmail = email => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+};
 
 onBeforeMount(() => {
     initForm(props.config);

@@ -11,17 +11,9 @@ import { StateInterface } from './state.interface';
 export default defineComponent({
     name: 'Tab',
     props: {
-        finished: {
-            type: Boolean,
-            default: true,
-        },
         enabled: {
             type: Boolean,
             default: true,
-        },
-        hideState: {
-            type: Boolean,
-            default: false,
         },
     },
     setup(props) {

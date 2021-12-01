@@ -20157,6 +20157,23 @@ __webpack_require__.r(__webpack_exports__);
     var questions = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return props.config.questions;
     });
+    var emailValid = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return true;
+
+      if (!validateEmail(_modules_booking__WEBPACK_IMPORTED_MODULE_1__.form.email)) {
+        return false;
+      }
+
+      return _modules_booking__WEBPACK_IMPORTED_MODULE_1__.form.email == _modules_booking__WEBPACK_IMPORTED_MODULE_1__.form.email_confirmation;
+    });
+    var formFinished = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return true;
+    });
+
+    var validateEmail = function validateEmail(email) {
+      return String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    };
+
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeMount)(function () {
       (0,_modules_booking__WEBPACK_IMPORTED_MODULE_1__.initForm)(props.config);
     });
@@ -20165,6 +20182,9 @@ __webpack_require__.r(__webpack_exports__);
       getAttr: getAttr,
       coronaApp: coronaApp,
       questions: questions,
+      emailValid: emailValid,
+      formFinished: formFinished,
+      validateEmail: validateEmail,
       form: _modules_booking__WEBPACK_IMPORTED_MODULE_1__.form,
       Text: _components__WEBPACK_IMPORTED_MODULE_2__.Text,
       Tabs: _components__WEBPACK_IMPORTED_MODULE_2__.Tabs,
@@ -20400,6 +20420,29 @@ __webpack_require__.r(__webpack_exports__);
         emit = _ref.emit;
     expose();
     var props = __props;
+    var validDayNumbers = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+    var validMonthNumbers = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+    var dayValid = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      var _day$value;
+
+      if (((_day$value = day.value) === null || _day$value === void 0 ? void 0 : _day$value.toString().length) == 2) {
+        return !validDayNumbers.includes(day.value) ? 'false' : null;
+      }
+    });
+    var monthValid = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      var _month$value;
+
+      if (((_month$value = month.value) === null || _month$value === void 0 ? void 0 : _month$value.toString().length) == 2) {
+        return !validMonthNumbers.includes(month.value) ? 'false' : null;
+      }
+    });
+    var yearValid = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      var _year$value;
+
+      if (((_year$value = year.value) === null || _year$value === void 0 ? void 0 : _year$value.toString().length) == 4) {
+        return parseInt(year.value) > 1900 && parseInt(year.value) < 2020 ? null : 'false';
+      }
+    });
     var year = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)((_props$modelValue = props.modelValue) === null || _props$modelValue === void 0 ? void 0 : (_props$modelValue$spl = _props$modelValue.split('-')) === null || _props$modelValue$spl === void 0 ? void 0 : _props$modelValue$spl[0]);
     var month = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)((_props$modelValue2 = props.modelValue) === null || _props$modelValue2 === void 0 ? void 0 : (_props$modelValue2$sp = _props$modelValue2.split('-')) === null || _props$modelValue2$sp === void 0 ? void 0 : _props$modelValue2$sp[1]);
     var day = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)((_props$modelValue3 = props.modelValue) === null || _props$modelValue3 === void 0 ? void 0 : (_props$modelValue3$sp = _props$modelValue3.split('-')) === null || _props$modelValue3$sp === void 0 ? void 0 : _props$modelValue3$sp[2]);
@@ -20415,6 +20458,11 @@ __webpack_require__.r(__webpack_exports__);
     });
     var __returned__ = {
       props: props,
+      validDayNumbers: validDayNumbers,
+      validMonthNumbers: validMonthNumbers,
+      dayValid: dayValid,
+      monthValid: monthValid,
+      yearValid: yearValid,
       year: year,
       month: month,
       day: day,
@@ -20448,17 +20496,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
   name: 'Tab',
   props: {
-    finished: {
-      type: Boolean,
-      "default": true
-    },
     enabled: {
       type: Boolean,
       "default": true
-    },
-    hideState: {
-      type: Boolean,
-      "default": false
     }
   },
   setup: function setup(props) {
@@ -20744,8 +20784,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Tab"], {
         title: "1/3",
-        enabled: true,
-        finished: true
+        enabled: true
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Text"], {
@@ -20775,8 +20814,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Tab"], {
         title: "2/3",
-        enabled: true,
-        hideState: true
+        enabled: $setup.emailValid
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Text"], {
@@ -20847,10 +20885,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Tab"], {
+      }, 8
+      /* PROPS */
+      , ["enabled"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Tab"], {
         title: "3/3",
-        enabled: true,
-        hideState: true,
+        enabled: $setup.formFinished,
         hideArrows: true
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -20864,7 +20903,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      })];
+      }, 8
+      /* PROPS */
+      , ["enabled"])];
     }),
     _: 1
     /* STABLE */
@@ -21137,10 +21178,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     type: "text",
     inputmode: "decimal",
-    pattern: "[0-9]*"
+    pattern: "[0-9]*",
+    errors: $setup.dayValid
   }, null, 8
   /* PROPS */
-  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Text"], {
+  , ["modelValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Text"], {
     placeholder: "MM",
     modelValue: $setup.month,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
@@ -21148,10 +21190,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     type: "text",
     inputmode: "decimal",
-    pattern: "[0-9]*"
+    pattern: "[0-9]*",
+    errors: $setup.monthValid
   }, null, 8
   /* PROPS */
-  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Text"], {
+  , ["modelValue", "errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Text"], {
     placeholder: "YYYY",
     modelValue: $setup.year,
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
@@ -21159,10 +21202,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     type: "text",
     inputmode: "decimal",
-    pattern: "[0-9]*"
+    pattern: "[0-9]*",
+    errors: $setup.yearValid
   }, null, 8
   /* PROPS */
-  , ["modelValue"])]);
+  , ["modelValue", "errors"])]);
 }
 
 /***/ }),
@@ -21248,7 +21292,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     disabled: !$setup.canGoNext($setup.state.selectedIndex),
     orange: "",
-    "class": "w-full mt-4"
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full mt-4", {
+      'bg-opacity-20': !$setup.canGoNext($setup.state.selectedIndex)
+    }])
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_7];
@@ -21258,7 +21304,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["disabled"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 512
+  , ["disabled", "class"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 512
   /* NEED_PATCH */
   ), _hoisted_8], 64
   /* STABLE_FRAGMENT */

@@ -23,6 +23,9 @@
                         :disabled="!canGoNext(state.selectedIndex)"
                         orange
                         class="w-full mt-4"
+                        :class="{
+                            'bg-opacity-20': !canGoNext(state.selectedIndex),
+                        }"
                     >
                         Weiter
                     </Button>
