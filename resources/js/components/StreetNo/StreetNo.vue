@@ -3,7 +3,6 @@
         placeholder="Straße + Hausnummer"
         v-model="getAttr('street-no').answer"
         type="text"
-        class="col-span-2"
         name="address-line1"
         :state="streetState(getAttr('street-no').answer)"
     />
