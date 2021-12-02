@@ -4,6 +4,7 @@
             placeholder="PLZ"
             v-model="zip"
             type="text"
+            name="postal-code"
             :state="zipState(zip)"
         />
         <Text
@@ -11,6 +12,7 @@
             v-model="city"
             type="text"
             class="col-span-2"
+            name="address-level2"
             :state="cityState(city)"
         />
     </div>

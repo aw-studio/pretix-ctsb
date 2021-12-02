@@ -3,6 +3,7 @@
         v-model="getAttr('phone').answer"
         placeholder="Handynummer"
         class="w-full"
+        name="tel"
         :state="phoneState"
     />
 </template>

@@ -5,6 +5,7 @@
             v-model="street"
             type="text"
             class="col-span-2"
+            name="address-line1"
             :state="streetState(street)"
         />
         <Text
