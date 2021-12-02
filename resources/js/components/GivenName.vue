@@ -1,7 +1,8 @@
 <template>
     <Text
-        v-model="form.positions[0].attendee_name_parts.given_name"
         placeholder="Vorname"
+        v-model="form.positions[0].attendee_name_parts.given_name"
+        type="text"
         class="w-full"
         name="given-name"
         :state="state"
