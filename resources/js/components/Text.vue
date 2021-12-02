@@ -1,23 +1,36 @@
 <template>
-    <input
-        v-model="model"
-        @input="updateInput"
-        class="flex-1 h-12 px-4 py-1 text-sm text-black border  border-gray focus:outline-none focus:ring-1 focus:ring-blue-400 rounded-xs"
-        :placeholder="label"
-        :type="type"
-        :class="{
-            'border border-red': state === false,
-            'border border-green': state === true,
-        }"
-        :name="name"
-        :id="name"
-        :autocomplete="name"
-        autocomplete="on"
-    />
+    <div class="relative">
+        <input
+            v-model="model"
+            @input="updateInput"
+            @focusin="focus = true"
+            @focusout="focus = false"
+            class="flex-1 w-full h-12 px-4 py-1 text-sm text-black border  border-gray focus:outline-none focus:ring-1 focus:ring-blue-400 rounded-xs"
+            :placeholder="label"
+            :type="type"
+            :class="{
+                'border border-red': state === false,
+                'border border-green': state === true,
+            }"
+            :name="name"
+            :id="name"
+            :autocomplete="name"
+            autocomplete="on"
+        />
+        <div
+            class="absolute left-0 mx-1 ml-2 text-sm transition-all duration-75 origin-left transform bg-white pointer-events-none  top-1"
+            :class="{
+                ' px-2 py-2.5 mt-0': isEmpty && !focus,
+                ' px-2 py-0 scale-75 -mt-3.5': !isEmpty || focus,
+            }"
+        >
+            {{ label }}
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { defineEmits, ref } from 'vue';
+import { defineEmits, ref, computed } from 'vue';
 const props = defineProps({
     modelValue: {
         type: [String, Number],
@@ -42,8 +55,13 @@ const props = defineProps({
 });
 
 const model = ref(props.modelValue);
+const focus = ref(false);
 
 const emit = defineEmits(['update:modelValue']);
+
+const isEmpty = computed(() => {
+    return model.value == null || model.value == '';
+});
 
 const updateInput = event => {
     emit('update:modelValue', event.target.value);

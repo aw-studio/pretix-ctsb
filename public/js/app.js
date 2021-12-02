@@ -24800,6 +24800,10 @@ __webpack_require__.r(__webpack_exports__);
     expose();
     var props = __props;
     var model = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.modelValue);
+    var focus = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var isEmpty = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return model.value == null || model.value == '';
+    });
 
     var updateInput = function updateInput(event) {
       emit('update:modelValue', event.target.value);
@@ -24808,7 +24812,9 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       props: props,
       model: model,
+      focus: focus,
       emit: emit,
+      isEmpty: isEmpty,
       updateInput: updateInput
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -25988,14 +25994,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = ["placeholder", "type", "name", "id", "autocomplete"];
+var _hoisted_1 = {
+  "class": "relative"
+};
+var _hoisted_2 = ["placeholder", "type", "name", "id", "autocomplete"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.model = $event;
     }),
     onInput: $setup.updateInput,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex-1 h-12 px-4 py-1 text-sm text-black border border-gray focus:outline-none focus:ring-1 focus:ring-blue-400 rounded-xs", {
+    onFocusin: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.focus = true;
+    }),
+    onFocusout: _cache[2] || (_cache[2] = function ($event) {
+      return $setup.focus = false;
+    }),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex-1 w-full h-12 px-4 py-1 text-sm text-black border border-gray focus:outline-none focus:ring-1 focus:ring-blue-400 rounded-xs", {
       'border border-red': $props.state === false,
       'border border-green': $props.state === true
     }]),
@@ -26006,7 +26021,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     autocomplete: $props.name
   }, null, 42
   /* CLASS, PROPS, HYDRATE_EVENTS */
-  , _hoisted_1)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelDynamic, $setup.model]]);
+  , _hoisted_2), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelDynamic, $setup.model]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["absolute left-0 mx-1 ml-2 text-sm transition-all duration-75 origin-left transform bg-white pointer-events-none top-1", {
+      ' px-2 py-2.5 mt-0': $setup.isEmpty && !$setup.focus,
+      ' px-2 py-0 scale-75 -mt-3.5': !$setup.isEmpty || $setup.focus
+    }])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.label), 3
+  /* TEXT, CLASS */
+  )]);
 }
 
 /***/ }),
