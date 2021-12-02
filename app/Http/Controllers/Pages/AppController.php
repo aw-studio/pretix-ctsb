@@ -18,9 +18,9 @@ class AppController
             $event,
             $subevent,
         )) {
-            dd('not found');
+            abort(404);
         }
-
+        
         return Inertia::render('App', [
             'config' => $config,
         ]);
@@ -48,7 +48,9 @@ class AppController
         string $event,
         int $subevent,
     ) {
-        foreach (config('pretix.configs') as $config) {
+        $configs = json_decode(env('CTSB_EVENTS'), true);
+
+        foreach ($configs as $config) {
             if (
                 $config['organizers'] == $organizers &&
                 $config['event'] == $event &&

@@ -9,7 +9,7 @@
         möchte mein Ergebnis per E-Mail erhalten.
     </Boolean>
     <Button
-        @click="form.post('/orders')"
+        @click="submit()"
         class="w-full px-4 py-1 mt-6 text-white"
         green
         :disabled="getAttr('consent').answer == 'False'"
@@ -42,7 +42,34 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { Boolean, Button } from '@/components';
 
 import { form, getAttr } from '@/modules/booking';
+
+const submit = () => {
+    form.transform(data => ({
+        ...transformFormdata(data),
+    })).post('/orders');
+};
+
+/**
+ * Purge empty pass id
+ */
+const transformFormdata = data => {
+    let passId = data.positions[0].answers.find(
+        answer => answer.question_identifier == 'pass-id'
+    );
+
+    if (passId.answer == null) {
+        console.log('transforming');
+
+        let index = data.positions[0].answers.findIndex(
+            answer => answer.question_identifier == 'pass-id'
+        );
+        data.positions[0].answers.splice(index, 1);
+    }
+
+    return { ...data };
+};
 </script>
