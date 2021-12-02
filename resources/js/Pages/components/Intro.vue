@@ -1,6 +1,6 @@
 <template>
     <div class="text-center text-white">
-        <h1 class="text-xl font-medium leading-tight tracking-wide">
+        <h1 class="text-xl font-semibold leading-tight tracking-wide">
             Kostenloser<br />
             Corona-Bürgertest
         </h1>

@@ -1,7 +1,7 @@
 <template>
     <Text
         v-model="getAttr('phone').answer"
-        placeholder="Handynummer"
+        label="Handynummer"
         class="w-full"
         name="tel"
         :state="phoneState"

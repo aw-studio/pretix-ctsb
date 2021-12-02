@@ -32,7 +32,7 @@
         <div class="bg-white shadow-top rounded-t-md">
             <div class="flex flex-col justify-between h-full px-4 py-6">
                 <slot />
-                <div v-if="showArrows(state.selectedIndex)">
+                <div v-if="showArrows(state.selectedIndex)" class="pt-6">
                     <Button
                         v-if="state.selectedIndex < state.tabs.length - 1"
                         @click="selectTab(state.selectedIndex + 1)"
@@ -46,7 +46,7 @@
                         Weiter
                     </Button>
                     <p
-                        class="pt-2 text-xs"
+                        class="pt-2 text-xs text-center text-gray"
                         v-if="!canGoNext(state.selectedIndex)"
                     >
                         Bitte fülle alle Felder aus, um den nächsten Schritt zu

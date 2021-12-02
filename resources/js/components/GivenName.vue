@@ -1,6 +1,6 @@
 <template>
     <Text
-        placeholder="Vorname"
+        label="Vorname"
         v-model="form.positions[0].attendee_name_parts.given_name"
         type="text"
         class="w-full"

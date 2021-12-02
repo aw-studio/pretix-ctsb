@@ -1,8 +1,7 @@
 <template>
     <div class="grid grid-cols-3 gap-3">
         <Text
-            ref="foo"
-            placeholder="TT"
+            label="TT"
             v-model="day"
             type="text"
             inputmode="decimal"
@@ -11,7 +10,7 @@
             name="bday-day"
         />
         <Text
-            placeholder="MM"
+            label="MM"
             v-model="month"
             type="text"
             inputmode="decimal"
@@ -20,7 +19,7 @@
             name="bday-month"
         />
         <Text
-            placeholder="YYYY"
+            label="YYYY"
             v-model="year"
             type="text"
             inputmode="decimal"
@@ -39,7 +38,7 @@ const props = defineProps({
         type: [String],
         default: null,
     },
-    placeholder: {
+    label: {
         type: String,
         default: null,
     },

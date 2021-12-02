@@ -5,7 +5,7 @@
         <template v-slot:after>
             <Text
                 v-model="getAttr('pass-id').answer"
-                placeholder="Ausweis- oder Passnummer"
+                label="Ausweis- oder Passnummer"
                 class="w-full mt-6"
             />
         </template>

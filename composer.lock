@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00b259943f5c3783f4756c736448506b",
+    "content-hash": "9e5aad7e83e6ebe76fddc92abcfe8e69",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -61,6 +61,56 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.0.3"
             },
             "time": "2021-03-11T06:42:03+00:00"
+        },
+        {
+            "name": "aw-studio/laravel-json-translations",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aw-studio/laravel-json-translations.git",
+                "reference": "4fceec80e415472d104aec37948b4e8992ba43a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aw-studio/laravel-json-translations/zipball/4fceec80e415472d104aec37948b4e8992ba43a0",
+                "reference": "4fceec80e415472d104aec37948b4e8992ba43a0",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.3",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AwStudio\\LaravelJsonTranslations\\LaravelJsonTranslationsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AwStudio\\LaravelJsonTranslations\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jannescb",
+                    "email": "jannes@aw-studio.de"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/aw-studio/laravel-json-translations/issues",
+                "source": "https://github.com/aw-studio/laravel-json-translations/tree/v0.1"
+            },
+            "time": "2021-08-02T11:46:50+00:00"
         },
         {
             "name": "brick/math",
@@ -8104,5 +8154,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

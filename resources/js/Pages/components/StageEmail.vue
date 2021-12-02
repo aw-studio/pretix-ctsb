@@ -1,7 +1,7 @@
 <template>
     <Text
         v-model="form.email"
-        placeholder="E-Mail"
+        label="E-Mail"
         :state="emailState"
         class="w-full"
         name="email"
@@ -10,7 +10,7 @@
     />
     <Text
         v-model="form.email_confirmation"
-        placeholder="E-Mail wiederholen"
+        label="E-Mail wiederholen"
         :state="emailConfirmationState"
         class="w-full"
         name="email"
@@ -19,7 +19,7 @@
     <Error v-if="!emailConfirmed">
         Die E-Mail-Adressen stimmen nicht überein.
     </Error>
-    <p class="py-2">
+    <p class="py-2 text-center">
         <strong>Achtung:</strong> Das Ergebnis wird ausschließlich an diese
         E-Mail-Adresse gesendet.
     </p>

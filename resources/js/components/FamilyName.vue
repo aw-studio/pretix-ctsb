@@ -1,7 +1,7 @@
 <template>
     <Text
         v-model="form.positions[0].attendee_name_parts.family_name"
-        placeholder="Nachname"
+        label="Nachname"
         class="w-full"
         name="family-name"
         :state="state"

@@ -1,6 +1,6 @@
 <template>
     <Text
-        placeholder="Straße + Hausnummer"
+        label="Straße + Hausnummer"
         v-model="getAttr('street-no').answer"
         type="text"
         class="w-full"

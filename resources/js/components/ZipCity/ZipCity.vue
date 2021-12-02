@@ -1,14 +1,14 @@
 <template>
     <div class="grid grid-cols-3 gap-3">
         <Text
-            placeholder="PLZ"
+            label="PLZ"
             v-model="zip"
             type="text"
             name="postal-code"
             :state="zipState(zip)"
         />
         <Text
-            placeholder="Ort"
+            label="Ort"
             v-model="city"
             type="text"
             class="col-span-2"
