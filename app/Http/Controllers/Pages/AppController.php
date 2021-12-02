@@ -40,6 +40,7 @@ class AppController
         // and dump the output
         return Inertia::render('Success', [
             'qr' => $qrcode->render($code),
+            'code' => $code,
         ]);
     }
 

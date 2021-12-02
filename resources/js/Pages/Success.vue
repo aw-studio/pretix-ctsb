@@ -40,7 +40,11 @@
         <div
             class="flex-1 px-4 pt-6 space-y-3 overflow-hidden bg-white  shadow-top rounded-t-md"
         >
-            <img :src="qr" class="mx-auto w-52" />
+            <div>
+                <img :src="qr" class="mx-auto w-52" />
+                <div class="text-center text-gray">{{ code }}</div>
+            </div>
+
             <!-- <Button :href="pdf.url" class="w-full" orange>
                 PDF-Download
             </Button>
@@ -56,6 +60,10 @@ import { Button } from '@/components';
 import { computed } from '@vue/reactivity';
 const props = defineProps({
     qr: {
+        type: String,
+        default: null,
+    },
+    code: {
         type: String,
         default: null,
     },

@@ -62,14 +62,17 @@ class OrderController
 
         // Determine if the status code is >= 400...
         if ($response->failed()) {
+            logger($response->json());
             throw new Exception('failed');
         }
 
         $this->resendMail($response->json()['code']);
 
-        return Redirect::route('success', ['code' => $response->json()['positions'][0]['secret']])
+        return Redirect::route('success', [
+                'code' => $response->json()['positions'][0]['secret'],
+            ])
             ->with([
-                'downloads' => $response->json()['downloads'],
+                'downloads' => $response->json()['downloads']
             ]);
     }
 

@@ -42,15 +42,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Boolean, Button } from '@/components';
 
 import { form, getAttr } from '@/modules/booking';
 
+const props = defineProps({
+    event: {
+        type: String,
+        required: true,
+    },
+});
+
 const submit = () => {
     form.transform(data => ({
         ...transformFormdata(data),
-    })).post('/orders');
+    })).post(`/orders`);
 };
 
 /**

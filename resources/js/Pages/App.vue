@@ -8,7 +8,7 @@
                 <StageForm />
             </Tab>
             <Tab title="3/3" :enabled="formFinished" :hideArrows="true">
-                <StageSummary />
+                <StageSummary :event="event" />
             </Tab>
         </Tabs>
     </form>
@@ -32,6 +32,10 @@ import StageSummary from './components/StageSummary.vue';
 const props = defineProps({
     config: {
         type: Object as PropType<TInitFormConfig>,
+        required: true,
+    },
+    event: {
+        type: String,
         required: true,
     },
 });
