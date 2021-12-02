@@ -4,12 +4,17 @@
         placeholder="E-Mail"
         :state="emailState"
         class="w-full"
+        name="email"
+        id="email"
+        type="email"
     />
     <Text
         v-model="form.email_confirmation"
         placeholder="E-Mail wiederholen"
         :state="emailConfirmationState"
         class="w-full"
+        name="email"
+        type="email"
     />
     <Error v-if="!emailConfirmed">
         Die E-Mail-Adressen stimmen nicht überein.

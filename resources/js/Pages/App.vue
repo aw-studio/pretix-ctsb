@@ -1,17 +1,17 @@
 <template>
-    <div class="flex flex-col h-screen">
+    <form class="flex flex-col h-screen" autocomplete="on" @submit.prevent>
         <Tabs>
             <Tab title="1/3" :enabled="true">
                 <StageEmail />
             </Tab>
-            <Tab title="2/3" :enabled="emailValid">
+            <Tab title="2/3" :enabled="true">
                 <StageForm />
             </Tab>
             <Tab title="3/3" :enabled="formFinished" :hideArrows="true">
                 <StageSummary />
             </Tab>
         </Tabs>
-    </div>
+    </form>
 </template>
 
 <script setup lang="ts">

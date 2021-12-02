@@ -9,6 +9,10 @@
             'border border-red': state === false,
             'border border-green': state === true,
         }"
+        :name="name"
+        :id="name"
+        :autocomplete="name"
+        autocomplete="on"
     />
 </template>
 
@@ -20,6 +24,10 @@ const props = defineProps({
         default: null,
     },
     placeholder: {
+        type: String,
+        default: null,
+    },
+    name: {
         type: String,
         default: null,
     },

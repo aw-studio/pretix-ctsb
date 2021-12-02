@@ -3,6 +3,7 @@
         v-model="form.positions[0].attendee_name_parts.given_name"
         placeholder="Vorname"
         class="w-full"
+        name="given-name"
         :state="state"
     />
 </template>

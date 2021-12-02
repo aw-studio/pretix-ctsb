@@ -4,14 +4,9 @@
     </h2>
     <GivenName />
     <FamilyName />
-
     <StreetNo />
     <ZipCity />
-    <Text
-        v-model="getAttr('phone').answer"
-        placeholder="Handynummer"
-        class="w-full"
-    />
+    <Phone />
     <!-- TODO: Land -->
 
     <h3 class="pt-6 text-sm font-semibold">Geburtstag</h3>
@@ -24,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { Text, StreetNo, ZipCity, Date } from '@/components';
+import { StreetNo, ZipCity, Date } from '@/components';
 
-import { form, getAttr } from '@/modules/booking';
-import { Pass, CWA, GivenName, FamilyName } from '@/components';
+import { getAttr } from '@/modules/booking';
+import { Pass, CWA, GivenName, FamilyName, Phone } from '@/components';
 </script>
