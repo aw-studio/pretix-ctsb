@@ -10,9 +10,11 @@
     </Boolean>
     <Button
         @click="form.post('/orders')"
-        class="w-full px-4 py-1 mt-6 text-white bg-green"
+        class="w-full px-4 py-1 mt-6 text-white"
+        green
+        :disabled="getAttr('consent').answer == 'False'"
         :class="{
-            'bg-opacity-20 pointer-events-none':
+            'bg-opacity-50 pointer-events-none':
                 getAttr('consent').answer == 'False',
         }"
     >
@@ -40,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { Boolean } from '@/components';
+import { Boolean, Button } from '@/components';
 
 import { form, getAttr } from '@/modules/booking';
 </script>

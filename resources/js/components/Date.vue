@@ -1,12 +1,14 @@
 <template>
     <div class="grid grid-cols-3 gap-3">
         <Text
+            ref="foo"
             placeholder="TT"
             v-model="day"
             type="text"
             inputmode="decimal"
             pattern="[0-9]*"
             :state="dayValid"
+            name="bday-day"
         />
         <Text
             placeholder="MM"
@@ -15,6 +17,7 @@
             inputmode="decimal"
             pattern="[0-9]*"
             :state="monthValid"
+            name="bday-month"
         />
         <Text
             placeholder="YYYY"
@@ -23,12 +26,13 @@
             inputmode="decimal"
             pattern="[0-9]*"
             :state="yearValid"
+            name="bday-year"
         />
     </div>
 </template>
 
 <script setup lang="ts">
-import { defineEmits, ref, watch, computed } from 'vue';
+import { defineEmits, ref, watch, computed, onMounted } from 'vue';
 import Text from './Text.vue';
 const props = defineProps({
     modelValue: {
@@ -156,6 +160,25 @@ watch(
     () => date.value,
     value => {
         emit('update:modelValue', value);
+    }
+);
+
+watch(
+    () => day.value,
+    value => {
+        if (value.toString()?.length == 2) {
+            let monthField = document.getElementById('bday-month');
+            monthField.focus();
+        }
+    }
+);
+watch(
+    () => month.value,
+    value => {
+        if (value.toString()?.length == 2) {
+            let yearField = document.getElementById('bday-year');
+            yearField.focus();
+        }
     }
 );
 </script>

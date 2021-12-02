@@ -37,8 +37,8 @@
                 </div>
             </div>
         </div>
-        <div
-            class="flex-1 px-4 pt-6 space-y-3 overflow-hidden bg-white  shadow-top rounded-t-md"
+        <!-- <div
+            class="flex-1 px-4 pt-6 space-y-3 overflow-hidden bg-white shadow-top rounded-t-md"
         >
             <img :src="qr" class="mx-auto w-52" />
             <Button :href="pdf.url" class="w-full" orange>
@@ -47,9 +47,8 @@
             <Button :href="passbook.url" class="w-full" orange>
                 Zur Apple Wallet hinzufügen
             </Button>
-        </div>
+        </div> -->
     </div>
-    <!-- {{ dummy }} -->
 </template>
 
 <script setup lang="ts">
@@ -60,15 +59,15 @@ const props = defineProps({
         type: String,
         default: null,
     },
-    downloads: {
-        default: null,
-    },
+    // downloads: {
+    //     default: null,
+    // },
 });
 
-const pdf = computed(() => {
-    return props.downloads.find(item => item.output == 'pdf');
-});
-const passbook = computed(() => {
-    return props.downloads.find(item => item.output == 'passbook');
-});
+// const pdf = computed(() => {
+//     return props.downloads.find(item => item.output == 'pdf');
+// });
+// const passbook = computed(() => {
+//     return props.downloads.find(item => item.output == 'passbook');
+// });
 </script>

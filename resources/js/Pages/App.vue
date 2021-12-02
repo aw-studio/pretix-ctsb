@@ -4,7 +4,7 @@
             <Tab title="1/3" :enabled="true">
                 <StageEmail />
             </Tab>
-            <Tab title="2/3" :enabled="true">
+            <Tab title="2/3" :enabled="emailValid">
                 <StageForm />
             </Tab>
             <Tab title="3/3" :enabled="formFinished" :hideArrows="true">
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, watch, computed, onBeforeMount, ref } from 'vue';
+import { PropType, watch, computed, onBeforeMount } from 'vue';
 import {
     form,
     initForm,
@@ -61,6 +61,9 @@ const formFinished = computed(() => {
         return false;
     }
     if (form.positions[0].attendee_name_parts.family_name?.length < 2) {
+        return false;
+    }
+    if (getAttr('phone').answer == null) {
         return false;
     }
     if (getAttr('street-no').answer == null) {

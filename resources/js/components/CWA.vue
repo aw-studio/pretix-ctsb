@@ -1,21 +1,17 @@
 <template>
-    <Boolean v-model="coronaApp" label="Corona Warn App">
-        Wir können dir Optional einen QR-Code zur Verfügung stellen, mit dem du
-        dein Testergebnis in die Corona-Warn-App übertragen kannst.
+    <Boolean v-model="coronaApp" label="QR-Code für Corona-Warn-App">
+        <p>
+            Hiermit erkläre ich mein Einverständnis zum Übermitteln des
+            Testergebnisses und meines pseudonymen Codes an das Serversystem des
+            RKI, damit ich mein Testergebnis mit der Corona-Warn-App abrufen
+            kann:
+        </p>
         <template v-slot:after>
-            <div class="mt-4">
-                <h3 class="pt-6 pb-2 text-sm font-semibold text">
-                    Zustimmung zur Übermittlung des Ergebnisses an die
-                    Corona-Warn-App.
-                </h3>
-                Für die Übertragung deines Ergebnisses als QR-Code in die
-                Corona-Warn-App kannst du Auswählen ob wir das Ergebnis mit
-                deinem Namen oder ohne deinen Namen übermitteln sollen.
-                <div
-                    class="flex w-full p-1 mt-4 space-x-1 bg-blue-600 bg-opacity-50 rounded-sm  text-blue"
-                >
+            <div class="pl-6 mt-6">
+                <h3 class="font-bold">Bitte auswählen</h3>
+                <div class="p-2 mt-4 bg-blue-600 bg-opacity-50 rounded-sm">
                     <button
-                        class="flex items-center justify-center w-1/2 px-2 py-2  rounded-xs"
+                        class="flex items-center justify-center px-2 py-2  rounded-xs"
                         :class="{
                             'text-white opacity-80':
                                 getAttr('consent-cwa-name').answer == 'False',
@@ -42,10 +38,21 @@
                                 ></path>
                             </svg>
                         </div>
-                        <span class="w-full">MIT Namen</span>
+                        <div class="w-full pl-4 text-left">
+                            <h3 class="pb-2 font-bold">
+                                Einwilligung zur NAMENTLICHEN Übermittlung der
+                                Daten an die Corona-Warn-App:
+                            </h3>
+                            Ich willige außerdem in die Übermittlung meines
+                            Namens und Geburtsdatums an die App ein, damit mein
+                            Testergebnis in der App als namentlicher
+                            Testnachweis angezeigt werden kann.
+                        </div>
                     </button>
+                </div>
+                <div class="p-2 mt-4 bg-blue-600 bg-opacity-50 rounded-sm">
                     <button
-                        class="flex items-center justify-center w-1/2 px-2 py-2  rounded-xs"
+                        class="flex items-center justify-center px-2 py-2  rounded-xs"
                         :class="{
                             'text-white opacity-80':
                                 getAttr('consent-cwa-pseudo').answer == 'False',
@@ -72,9 +79,25 @@
                                 ></path>
                             </svg>
                         </div>
-                        <span class="w-full">OHNE Namen</span>
+                        <div class="w-full pl-4 text-left">
+                            <h3 class="pb-2 font-bold">
+                                Einwilligung zur NICHT-NAMENTLICHEN Übermittlung
+                                der Daten an die Corona-Warn-App:
+                            </h3>
+                            Das Testergebnis in der App kann hierbei nicht als
+                            namentlicher Testnachweis verwendet werden.
+                        </div>
                     </button>
                 </div>
+            </div>
+            <div class="pt-4">
+                Mir wurden
+                <a
+                    href="https://pretix.eu/redirect/?url=https%3A//pretix.eu/ctsb/%3AxF1lYuL7-kQhdZk84hrt4u-4F90kJiSkPGEBNo2U2pQ"
+                    class="underline"
+                    >Hinweise zum Datenschutz</a
+                >
+                ausgehändigt.
             </div>
         </template>
     </Boolean>

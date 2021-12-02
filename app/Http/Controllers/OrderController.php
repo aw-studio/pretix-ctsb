@@ -84,4 +84,9 @@ class OrderController
         // TODO: check response?
         $this->api->post($this->url.$code.'/resend_link/');
     }
+
+    // public function downloadFile()
+    // {
+    //     return $this->api->get('https://pretix.eu/api/v1/organizers/ctsb/events/mobil4/orders/EVZDB/download/mobile_pdf/');
+    // }
 }
