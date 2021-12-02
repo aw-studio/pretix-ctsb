@@ -37,17 +37,17 @@
                 </div>
             </div>
         </div>
-        <!-- <div
-            class="flex-1 px-4 pt-6 space-y-3 overflow-hidden bg-white shadow-top rounded-t-md"
+        <div
+            class="flex-1 px-4 pt-6 space-y-3 overflow-hidden bg-white  shadow-top rounded-t-md"
         >
             <img :src="qr" class="mx-auto w-52" />
-            <Button :href="pdf.url" class="w-full" orange>
+            <!-- <Button :href="pdf.url" class="w-full" orange>
                 PDF-Download
             </Button>
             <Button :href="passbook.url" class="w-full" orange>
                 Zur Apple Wallet hinzufügen
-            </Button>
-        </div> -->
+            </Button> -->
+        </div>
     </div>
 </template>
 
