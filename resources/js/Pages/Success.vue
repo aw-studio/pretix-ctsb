@@ -44,6 +44,9 @@
                 <img :src="qr" class="mx-auto w-52" />
                 <div class="text-center text-gray">{{ code }}</div>
             </div>
+            <div class="font-bold text-center">
+                {{ event }}
+            </div>
 
             <!-- <Button :href="pdf.url" class="w-full" orange>
                 PDF-Download
@@ -64,6 +67,10 @@ const props = defineProps({
         default: null,
     },
     code: {
+        type: String,
+        default: null,
+    },
+    event: {
         type: String,
         default: null,
     },

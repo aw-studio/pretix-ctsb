@@ -4,10 +4,10 @@
             <Tab title="1/3" :enabled="true">
                 <StageEmail />
             </Tab>
-            <Tab title="2/3" :enabled="emailValid">
+            <Tab title="2/3" :enabled="true">
                 <StageForm />
             </Tab>
-            <Tab title="3/3" :enabled="formFinished" :hideArrows="true">
+            <Tab title="3/3" :enabled="true" :hideArrows="true">
                 <StageSummary :event="event" />
             </Tab>
         </Tabs>

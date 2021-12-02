@@ -32,7 +32,7 @@ class OrderController
             'Authorization' => 'Token '.config('pretix.api.token'),
             'Content-Type'  => 'application/json',
         ]);
-        $this->url = config('pretix.api.url');
+        
     }
 
     /**
@@ -41,9 +41,10 @@ class OrderController
      * @param  Request $request
      * @return void
      */
-    public function create(Request $request)
+    public function create(Request $request, string $event)
     {
-        // TODO:
+        $this->setUrl($event);
+
         $validated = $request->validate([
             'email'                                       => 'required|confirmed|email',
             'email_confirmation'                          => 'required|email',
@@ -55,7 +56,6 @@ class OrderController
             'positions.*.subevent'                        => 'required',
             'positions.*.attendee_name_parts.given_name'  => 'required',
             'positions.*.attendee_name_parts.family_name' => 'required',
-            // 'positions.*.answers.*.answer'                => 'required',
         ]);
 
         $response = $this->api->post($this->url, $validated);
@@ -70,9 +70,10 @@ class OrderController
 
         return Redirect::route('success', [
                 'code' => $response->json()['positions'][0]['secret'],
-            ])
-            ->with([
-                'downloads' => $response->json()['downloads']
+                ])
+                ->with([
+                    'downloads' => $response->json()['downloads'],
+                    'event' => $event
             ]);
     }
 
@@ -88,8 +89,16 @@ class OrderController
         $this->api->post($this->url.$code.'/resend_link/');
     }
 
-    // public function downloadFile()
-    // {
-    //     return $this->api->get('https://pretix.eu/api/v1/organizers/ctsb/events/mobil4/orders/EVZDB/download/mobile_pdf/');
-    // }
+
+    /**
+     * Set the correct event.
+     *
+     * @param string $event
+     * @return void
+     */
+    public function setUrl(string $event)
+    {
+        $this->url = config('pretix.api.url') . $event . '/orders/';
+    }
+
 }

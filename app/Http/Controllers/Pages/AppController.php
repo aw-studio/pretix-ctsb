@@ -23,10 +23,11 @@ class AppController
         
         return Inertia::render('App', [
             'config' => $config,
+            'event' => $event,
         ]);
     }
 
-    public function success(string $code)
+    public function success(string $code,)
     {
         $options = new QROptions([
             'version'    => 5,

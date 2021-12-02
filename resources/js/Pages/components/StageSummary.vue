@@ -56,7 +56,7 @@ const props = defineProps({
 const submit = () => {
     form.transform(data => ({
         ...transformFormdata(data),
-    })).post(`/orders`);
+    })).post(`/orders/${props.event}`);
 };
 
 /**
