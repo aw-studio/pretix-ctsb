@@ -5,8 +5,9 @@
         target="_blank"
         class="inline-flex items-center justify-center h-12 px-4 text-sm font-medium tracking-wider text-white transition-transform duration-75 transform rounded-sm "
         :class="{
-            'bg-orange': orange,
-            'bg-green': green,
+            'bg-gray': disabled,
+            'bg-orange': orange && !disabled,
+            'bg-green': green && !disabled,
         }"
     >
         <slot />
@@ -22,6 +23,10 @@ const props = defineProps({
         defaul: false,
     },
     green: {
+        type: Boolean,
+        defaul: false,
+    },
+    disabled: {
         type: Boolean,
         defaul: false,
     },

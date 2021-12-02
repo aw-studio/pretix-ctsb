@@ -1,5 +1,6 @@
 export { default as Text} from './Text.vue'
 export { default as Date} from './Date.vue'
+export { default as Error} from './Error.vue'
 export { default as Boolean} from './Boolean.vue'
 export { default as Button} from './Button.vue'
 export { default as StreetNo} from './StreetNo.vue'

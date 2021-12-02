@@ -6,7 +6,7 @@
             type="text"
             inputmode="decimal"
             pattern="[0-9]*"
-            :errors="dayValid"
+            :state="dayValid"
         />
         <Text
             placeholder="MM"
@@ -14,7 +14,7 @@
             type="text"
             inputmode="decimal"
             pattern="[0-9]*"
-            :errors="monthValid"
+            :state="monthValid"
         />
         <Text
             placeholder="YYYY"
@@ -22,7 +22,7 @@
             type="text"
             inputmode="decimal"
             pattern="[0-9]*"
-            :errors="yearValid"
+            :state="yearValid"
         />
     </div>
 </template>
@@ -99,28 +99,34 @@ const validMonthNumbers = [
 
 const dayValid = computed(() => {
     if (day.value?.toString().length == 2) {
-        return !validDayNumbers.includes(day.value) ? 'false' : null;
+        return validDayNumbers.includes(day.value) ? true : false;
     }
-    if (day.value?.toString().length > 2) {
-        return 'false';
+    if (day.value?.toString().length > 2 || day.value?.toString().length == 1) {
+        return false;
     }
 });
 const monthValid = computed(() => {
     if (month.value?.toString().length == 2) {
-        return !validMonthNumbers.includes(month.value) ? 'false' : null;
+        return validMonthNumbers.includes(month.value) ? true : false;
     }
-    if (month.value?.toString().length > 2) {
-        return 'false';
+    if (
+        month.value?.toString().length > 2 ||
+        month.value?.toString().length == 1
+    ) {
+        return false;
     }
 });
 const yearValid = computed(() => {
     if (year.value?.toString().length == 4) {
         return parseInt(year.value) > 1900 && parseInt(year.value) < 2020
-            ? null
-            : 'false';
+            ? true
+            : false;
     }
-    if (year.value?.toString().length > 4) {
-        return 'false';
+    if (
+        year.value?.toString().length != 4 &&
+        year.value?.toString().length > 0
+    ) {
+        return false;
     }
 });
 

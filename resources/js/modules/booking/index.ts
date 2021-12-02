@@ -1,4 +1,5 @@
-import { useForm } from "@inertiajs/inertia-vue3";
+import { computed } from "vue";
+import { useForm, usePage } from "@inertiajs/inertia-vue3";
 
 export interface TAttendeNameParts {
     _scheme: string;
@@ -111,3 +112,35 @@ export const initForm = (config: TInitFormConfig) => {
   form.positions[0].answers = initAnswers(config.questions)
   form.positions[0].subevent = config.subevent
 }
+
+
+const questions = computed(() => {
+  let config: any = usePage().props.value.config;
+  
+  return config.questions;
+});
+
+export const getAttr = (key: string) => {
+
+  let question = questions.value.find(
+      question => question.question_identifier == key
+  );
+  return form.positions[0].answers.find(
+      (answer: TAnswer) => answer.question == question.question
+  );
+};
+
+export const validateEmail = email => {
+  return String(email)
+      .toLowerCase()
+      .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+};
+
+export const emailConfirmed = computed(() => {
+  if (validateEmail(form.email) && validateEmail(form.email_confirmation)) {
+      return form.email?.toLowerCase() == form.email_confirmation?.toLowerCase();
+  }
+  return true
+});

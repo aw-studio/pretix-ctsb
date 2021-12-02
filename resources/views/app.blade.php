@@ -8,5 +8,6 @@
     </head>
     <body class=" bg-gradient-to-tr from-blue-400 to-blue-300">
         @inertia
+        <div class="fixed bottom-0 w-screen h-2 -mb-1 bg-white"></div>
     </body>
 </html>

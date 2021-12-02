@@ -40,11 +40,18 @@
                         orange
                         class="w-full mt-4"
                         :class="{
-                            'bg-opacity-20': !canGoNext(state.selectedIndex),
+                            'bg-opacity-50': !canGoNext(state.selectedIndex),
                         }"
                     >
                         Weiter
                     </Button>
+                    <p
+                        class="pt-2 text-xs"
+                        v-if="!canGoNext(state.selectedIndex)"
+                    >
+                        Bitte fülle alle Felder aus, um den nächsten Schritt zu
+                        aktivierren.
+                    </p>
                 </div>
             </div>
         </div>

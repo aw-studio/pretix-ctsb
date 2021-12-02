@@ -6,7 +6,8 @@
         :placeholder="placeholder"
         :type="type"
         :class="{
-            'border border-red': errors != null,
+            'border border-red': state === false,
+            'border border-green': state === true,
         }"
     />
 </template>
@@ -26,8 +27,8 @@ const props = defineProps({
         type: String,
         default: 'text',
     },
-    errors: {
-        type: String,
+    state: {
+        type: Boolean,
         default: null,
     },
 });
