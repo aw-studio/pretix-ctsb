@@ -7,6 +7,7 @@
         name="email"
         id="email"
         type="email"
+        inputmode="email"
     />
     <Text
         v-model="form.email_confirmation"
@@ -15,6 +16,7 @@
         class="w-full"
         name="email"
         type="email"
+        inputmode="email"
     />
     <Error v-if="!emailConfirmed">
         {{ t('app.errors.email-confirmed') }}
