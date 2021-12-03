@@ -43,6 +43,7 @@ return [
     ],
 
     'errors' => [
-        'email-confirmed' => 'Die E-Mail-Adressen stimmen nicht überein.'
+        'email-confirmed' => 'Die E-Mail-Adressen stimmen nicht überein.',
+        'phone-digits' => 'Die Handynummer muss mindestens 7 Zahlen enthalten.'
     ]
 ];

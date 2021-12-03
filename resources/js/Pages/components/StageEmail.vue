@@ -26,26 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { Text, Error } from '@/components';
 
-import { form, emailConfirmed, validateEmail } from '@/modules/booking';
-
-const emailState = computed(() => {
-    if (!emailConfirmed.value) {
-        return false;
-    }
-    if (validateEmail(form.email)) {
-        return true;
-    }
-});
-
-const emailConfirmationState = computed(() => {
-    if (!emailConfirmed.value) {
-        return false;
-    }
-    if (validateEmail(form.email_confirmation)) {
-        return true;
-    }
-});
+import { form } from '@/modules/booking';
+import {
+    emailConfirmed,
+    emailState,
+    emailConfirmationState,
+} from '@/modules/validation';
 </script>

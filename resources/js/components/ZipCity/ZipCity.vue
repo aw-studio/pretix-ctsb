@@ -20,18 +20,6 @@
 
 <script setup lang="ts">
 import { Text } from '@/components';
-import { zip, city } from './state';
-
-const zipState = zip => {
-    if (zip == null) {
-        return;
-    }
-    return zip.toString().length >= 3;
-};
-const cityState = city => {
-    if (city == null) {
-        return;
-    }
-    return city.toString().length >= 2;
-};
+import { zip, city } from '@/modules/booking/state';
+import { zipState, cityState } from '@/modules/validation';
 </script>

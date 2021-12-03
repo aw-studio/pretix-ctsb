@@ -4,7 +4,7 @@
             <Tab title="1/3" :enabled="true">
                 <StageEmail />
             </Tab>
-            <Tab title="2/3" :enabled="emailValid">
+            <Tab title="2/3" :enabled="true">
                 <StageForm />
             </Tab>
             <Tab title="3/3" :enabled="formFinished" :hideArrows="true">
@@ -16,14 +16,9 @@
 
 <script setup lang="ts">
 import { PropType, watch, computed, onBeforeMount } from 'vue';
-import {
-    form,
-    initForm,
-    TInitFormConfig,
-    TAnswer,
-    validateEmail,
-} from '@/modules/booking';
+import { form, initForm, TInitFormConfig, TAnswer } from '@/modules/booking';
 
+import { stageEmailValid } from '@/modules/validation';
 import { Tabs, Tab } from '@/components';
 import StageEmail from './components/StageEmail.vue';
 import StageForm from './components/StageForm.vue';
@@ -81,13 +76,6 @@ const formFinished = computed(() => {
     }
 
     return true;
-});
-
-const emailValid = computed(() => {
-    if (!validateEmail(form.email)) {
-        return false;
-    }
-    return form.email?.toLowerCase() == form.email_confirmation?.toLowerCase();
 });
 
 onBeforeMount(() => {
