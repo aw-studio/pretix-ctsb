@@ -2,6 +2,7 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = {
     // mode: 'jit',
+    purge: ['./resources/**/*.vue', './resources/views/**/*.php'],
     variants: {
         extend: {
             backgroundColor: ['active'],
