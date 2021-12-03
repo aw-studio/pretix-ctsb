@@ -1,12 +1,12 @@
 <template>
     <h2 class="py-4 text-lg font-bold text-center">
-        Kostenloser Bürgertest nach TESTVO
+        {{ t('app.lines.headline-testvo') }}
     </h2>
-    <Boolean v-model="getAttr('consent').answer" label="Zustimmen">
-        Mit dem Absenden bestätige ich, dass die für die Durchführung eines
-        kostenfreien Antigen-Schnelltests auf der Grundlage der Testverordnung
-        (TestVO) des Bundesministeriums für Gesundheit eingehalten werden. Ich
-        möchte mein Ergebnis per E-Mail erhalten.
+    <Boolean
+        v-model="getAttr('consent').answer"
+        :label="t('app.labels.consent')"
+    >
+        {{ t('app.lines.consent') }}
     </Boolean>
     <Button
         @click="submit()"
@@ -18,7 +18,7 @@
                 getAttr('consent').answer == 'False',
         }"
     >
-        Senden
+        {{ t('app.buttons.send') }}
         <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -43,8 +43,8 @@
 
 <script setup lang="ts">
 import { Boolean, Button } from '@/components';
-
 import { form, getAttr } from '@/modules/booking';
+import { t } from '@/modules/i18n';
 
 const props = defineProps({
     event: {

@@ -1,6 +1,6 @@
 <template>
     <h2 class="py-4 text-lg font-bold text-center">
-        Deine persönlichen Angaben
+        {{ t('app.lines.personal-data') }}
     </h2>
     <GivenName />
     <FamilyName />
@@ -9,10 +9,12 @@
     <Phone />
     <!-- TODO: Land -->
 
-    <h3 class="pt-6 text-sm font-semibold">Geburtstag</h3>
+    <h3 class="pt-6 text-sm font-semibold">{{ t('app.lines.birthday') }}</h3>
     <Date />
 
-    <h3 class="pt-8 text-sm font-semibold text">Optional</h3>
+    <h3 class="pt-8 text-sm font-semibold text">
+        {{ t('app.lines.optional') }}
+    </h3>
 
     <Pass />
     <CWA />
@@ -29,4 +31,6 @@ import {
     FamilyName,
     Phone,
 } from '@/components';
+
+import { t } from '@/modules/i18n';
 </script>

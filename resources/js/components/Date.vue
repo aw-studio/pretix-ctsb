@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-cols-3 gap-3">
         <Text
-            label="TT"
+            :label="t('app.labels.dd')"
             v-model="day"
             type="text"
             inputmode="decimal"
@@ -10,7 +10,7 @@
             name="bday-day"
         />
         <Text
-            label="MM"
+            :label="t('app.labels.mm')"
             v-model="month"
             type="text"
             inputmode="decimal"
@@ -19,7 +19,7 @@
             name="bday-month"
         />
         <Text
-            label="YYYY"
+            :label="t('app.labels.yyyy')"
             v-model="year"
             type="text"
             inputmode="decimal"
@@ -35,6 +35,7 @@ import { watch } from 'vue';
 import { day, month, year } from '@/modules/booking/state';
 import { dayState, monthState, yearState } from '@/modules/validation';
 import Text from './Text.vue';
+import { t } from '@/modules/i18n';
 
 watch(
     () => day.value,

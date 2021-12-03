@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative text-black">
         <input
             v-model="model"
             @input="updateInput"
@@ -18,7 +18,7 @@
             autocomplete="on"
         />
         <div
-            class="absolute left-0 mx-1 ml-2 text-sm transition-all duration-75 origin-left transform bg-white pointer-events-none  top-1"
+            class="absolute left-0 mx-1 ml-2 text-sm transition-all duration-75 origin-left transform bg-white rounded-sm pointer-events-none  top-1"
             :class="{
                 ' px-2 py-2.5 mt-0': isEmpty && !focus,
                 ' px-2 py-0 scale-75 -mt-3.5': !isEmpty || focus,

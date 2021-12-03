@@ -1,7 +1,7 @@
 <template>
     <Text
         v-model="form.email"
-        label="E-Mail"
+        :label="t('app.labels.email')"
         :state="emailState"
         class="w-full"
         name="email"
@@ -10,24 +10,24 @@
     />
     <Text
         v-model="form.email_confirmation"
-        label="E-Mail wiederholen"
+        :label="t('app.labels.confirm-email')"
         :state="emailConfirmationState"
         class="w-full"
         name="email"
         type="email"
     />
     <Error v-if="!emailConfirmed">
-        Die E-Mail-Adressen stimmen nicht überein.
+        {{ t('app.errors.email-confirmed') }}
     </Error>
     <p class="py-2 text-center">
-        <strong>Achtung:</strong> Das Ergebnis wird ausschließlich an diese
-        E-Mail-Adresse gesendet.
+        <strong>{{ t('app.lines.attention') }}:</strong>
+        {{ t('app.lines.only-sending-to-this-email') }}
     </p>
 </template>
 
 <script setup lang="ts">
 import { Text, Error } from '@/components';
-
+import { t } from '@/modules/i18n';
 import { form } from '@/modules/booking';
 import {
     emailConfirmed,

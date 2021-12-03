@@ -1,11 +1,10 @@
 <template>
-    <Boolean v-model="pass" label="Ausweis-/Passnummer hinterlegen">
-        Zur Akzeptanz für Flugreisen muss ggf. die Ausweis oder Passnummer
-        hinterlegt werden.
+    <Boolean v-model="pass" :label="t('app.labels.pass-headline')">
+        {{ t('app.lines.pass-info') }}
         <template v-slot:after>
             <Text
                 v-model="getAttr('pass-id').answer"
-                label="Ausweis- oder Passnummer"
+                :label="t('app.labels.pass')"
                 class="w-full mt-6"
             />
         </template>
@@ -15,6 +14,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Text, Boolean } from '@/components';
+import { t } from '@/modules/i18n';
 
 import { getAttr } from '@/modules/booking';
 const pass = ref('False');

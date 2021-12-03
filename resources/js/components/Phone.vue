@@ -1,7 +1,7 @@
 <template>
     <Text
+        :label="t('app.labels.phone')"
         v-model="getAttr('phone').answer"
-        label="Handynummer"
         class="w-full"
         name="tel"
         :state="phoneState"
@@ -12,13 +12,14 @@
             phoneState == false
         "
     >
-        Die Handynummer muss mindestens 7 Zahlen enthalten
+        {{ t('app.errors.phone-digits') }}
     </Error>
 </template>
 
 <script setup lang="ts">
 import { Text } from '@/components';
 import { getAttr } from '@/modules/booking';
+import { t } from '@/modules/i18n';
 import { phoneState, hasAtLeastNDigits } from '@/modules/validation';
 import Error from './Error.vue';
 </script>

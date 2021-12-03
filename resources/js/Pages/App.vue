@@ -4,7 +4,7 @@
             <Tab title="1/3" :enabled="true">
                 <StageEmail />
             </Tab>
-            <Tab title="2/3" :enabled="true">
+            <Tab title="2/3" :enabled="stageEmailValid">
                 <StageForm />
             </Tab>
             <Tab title="3/3" :enabled="stageFormValid" :hideArrows="true">

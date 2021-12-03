@@ -1,6 +1,6 @@
 <template>
     <Text
-        label="Straße + Hausnummer"
+        :label="t('app.labels.street-no')"
         v-model="getAttr('street-no').answer"
         type="text"
         class="w-full"
@@ -13,4 +13,5 @@
 import { Text } from '@/components';
 import { getAttr } from '@/modules/booking';
 import { streetNoState } from '@/modules/validation';
+import { t } from '@/modules/i18n';
 </script>

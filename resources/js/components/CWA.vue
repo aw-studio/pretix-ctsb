@@ -1,14 +1,11 @@
 <template>
     <Boolean v-model="coronaApp" label="QR-Code für Corona-Warn-App">
         <p>
-            Hiermit erkläre ich mein Einverständnis zum Übermitteln des
-            Testergebnisses und meines pseudonymen Codes an das Serversystem des
-            RKI, damit ich mein Testergebnis mit der Corona-Warn-App abrufen
-            kann:
+            {{ t('app.lines.cwa-consent-info') }}
         </p>
         <template v-slot:after>
             <div class="pl-6 mt-6">
-                <h3 class="font-bold">Bitte auswählen</h3>
+                <h3 class="font-bold">{{ t('app.lines.chose') }}</h3>
                 <div class="p-2 mt-4 bg-blue-600 bg-opacity-50 rounded-sm">
                     <button
                         class="flex items-center justify-center px-2 py-2  rounded-xs"
@@ -40,13 +37,9 @@
                         </div>
                         <div class="w-full pl-4 text-left">
                             <h3 class="pb-2 font-bold">
-                                Einwilligung zur NAMENTLICHEN Übermittlung der
-                                Daten an die Corona-Warn-App:
+                                {{ t('app.lines.cwa-consent-name') }}
                             </h3>
-                            Ich willige außerdem in die Übermittlung meines
-                            Namens und Geburtsdatums an die App ein, damit mein
-                            Testergebnis in der App als namentlicher
-                            Testnachweis angezeigt werden kann.
+                            {{ t('app.lines.cwa-consent-name-info') }}
                         </div>
                     </button>
                 </div>
@@ -81,11 +74,9 @@
                         </div>
                         <div class="w-full pl-4 text-left">
                             <h3 class="pb-2 font-bold">
-                                Einwilligung zur NICHT-NAMENTLICHEN Übermittlung
-                                der Daten an die Corona-Warn-App:
+                                {{ t('app.lines.cwa-consent-pseudo') }}
                             </h3>
-                            Das Testergebnis in der App kann hierbei nicht als
-                            namentlicher Testnachweis verwendet werden.
+                            {{ t('app.lines.cwa-consent-pseudo-info') }}
                         </div>
                     </button>
                 </div>
@@ -108,6 +99,7 @@ import { watch, ref } from 'vue';
 import { Boolean } from '@/components';
 
 import { getAttr } from '@/modules/booking';
+import { t } from '@/modules/i18n';
 
 const toggleCwa = (key: string) => {
     if (

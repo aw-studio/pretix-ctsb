@@ -1,14 +1,14 @@
 <template>
     <div class="grid grid-cols-3 gap-3">
         <Text
-            label="PLZ"
+            :label="t('app.labels.postal-code')"
             v-model="zip"
             type="text"
             name="postal-code"
             :state="zipState(zip)"
         />
         <Text
-            label="Ort"
+            :label="t('app.labels.city')"
             v-model="city"
             type="text"
             class="col-span-2"
@@ -22,4 +22,5 @@
 import { Text } from '@/components';
 import { zip, city } from '@/modules/booking/state';
 import { zipState, cityState } from '@/modules/validation';
+import { t } from '@/modules/i18n';
 </script>
