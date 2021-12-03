@@ -18,21 +18,45 @@
                     d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
                 />
             </svg>
-            Zurück
+            {{ t('app.buttons.back') }}
         </button>
         <div
             v-if="state.selectedIndex"
             class="text-xs tracking-widest uppercase"
         >
-            Schritt {{ state.selectedIndex + 1 }}/3
+            {{ t('app.labels.step') }} {{ state.selectedIndex + 1 }}/3
         </div>
     </div>
     <div ref="childs" class="z-10">
-        <Intro v-if="state.selectedIndex == 0" />
+        <div v-if="state.selectedIndex == 0">
+            <div
+                class="flex justify-end px-4 mb-4 -mt-4 space-x-2 text-sm text-white "
+            >
+                <button
+                    @click="locale = 'en'"
+                    class="w-12 h-12 font-thin border border-white rounded-full"
+                    :class="{
+                        'opacity-50': locale != 'en',
+                    }"
+                >
+                    EN
+                </button>
+                <button
+                    @click="locale = 'de'"
+                    class="w-12 h-12 font-thin border border-white rounded-full"
+                    :class="{
+                        'opacity-50': locale != 'de',
+                    }"
+                >
+                    DE
+                </button>
+            </div>
+            <Intro />
+        </div>
         <div class="bg-white shadow-top rounded-t-md">
             <div class="flex flex-col justify-between h-full px-4 py-6">
                 <slot />
-                <div v-if="showArrows(state.selectedIndex)">
+                <div v-if="showArrows(state.selectedIndex)" class="pt-6">
                     <Button
                         v-if="state.selectedIndex < state.tabs.length - 1"
                         @click="selectTab(state.selectedIndex + 1)"
@@ -43,14 +67,13 @@
                             'bg-opacity-50': !canGoNext(state.selectedIndex),
                         }"
                     >
-                        Weiter
+                        {{ t('app.buttons.next') }}
                     </Button>
                     <p
-                        class="pt-2 text-xs"
+                        class="pt-2 text-xs text-center text-gray"
                         v-if="!canGoNext(state.selectedIndex)"
                     >
-                        Bitte fülle alle Felder aus, um den nächsten Schritt zu
-                        aktivierren.
+                        {{ t('app.lines.fill-all-inputs') }}
                     </p>
                 </div>
             </div>
@@ -72,6 +95,10 @@ import {
 import { StateInterface } from './state.interface';
 import Button from '@/components/Button.vue';
 import Intro from '@/Pages/components/Intro.vue';
+import { t } from '@/modules/i18n';
+import { useI18n } from 'vue-i18n';
+
+const { locale } = useI18n({ useScope: 'global' });
 
 const slots = useSlots();
 

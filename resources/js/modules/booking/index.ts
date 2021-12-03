@@ -103,44 +103,28 @@ const initAnswer = (answer: TQuestionConfig) => {
 }
 
 const initAnswers = (questions: TQuestionConfig[]) => {
-  return questions.map((question: TQuestionConfig) => initAnswer(question))
+    return questions.map((question: TQuestionConfig) => initAnswer(question))
 }
 
 export const initForm = (config: TInitFormConfig) => {  
-  form.fees[0].tax_rule = config.tax_rule
-  form.positions[0].item = config.item
-  form.positions[0].answers = initAnswers(config.questions)
-  form.positions[0].subevent = config.subevent
+    form.fees[0].tax_rule = config.tax_rule
+    form.positions[0].item = config.item
+    form.positions[0].answers = initAnswers(config.questions)
+    form.positions[0].subevent = config.subevent
 }
 
 
 const questions = computed(() => {
-  let config: any = usePage().props.value.config;
-  
-  return config.questions;
+    let config: any = usePage().props.value.config;
+    
+    return config.questions;
 });
 
 export const getAttr = (key: string) => {
-
-  let question = questions.value.find(
-      question => question.question_identifier == key
-  );
-  return form.positions[0].answers.find(
-      (answer: TAnswer) => answer.question == question.question
-  );
+    let question = questions.value.find(
+        question => question.question_identifier == key
+    );
+    return form.positions[0].answers.find(
+        (answer: TAnswer) => answer.question == question.question
+    );
 };
-
-export const validateEmail = email => {
-  return String(email)
-      .toLowerCase()
-      .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-};
-
-export const emailConfirmed = computed(() => {
-  if (validateEmail(form.email) && validateEmail(form.email_confirmation)) {
-      return form.email?.toLowerCase() == form.email_confirmation?.toLowerCase();
-  }
-  return true
-});

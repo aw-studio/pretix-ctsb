@@ -1,13 +1,11 @@
 <template>
     <div class="flex flex-col min-h-screen">
         <div class="px-8 mt-16 text-center text-white">
-            <h1 class="mb-4 text-xl font-medium leading-tight tracking-wide">
-                Deine Buchung war erfolgreich!
+            <h1 class="mb-4 text-xl font-semibold leading-tight tracking-wide">
+                {{ t('app.lines.booking-successful') }}
             </h1>
             <p>
-                Wir haben die deinen QR-Code an deine angegebene E-Mail
-                versendet. Mit diesem Code kannst du dich an unserer Station
-                testen lassen.
+                {{ t('app.lines.booking-successful-text') }}
             </p>
         </div>
         <div class="flex justify-center w-full mt-12">
@@ -61,6 +59,7 @@
 <script setup lang="ts">
 import { Button } from '@/components';
 import { computed } from '@vue/reactivity';
+import { t } from '@/modules/i18n';
 const props = defineProps({
     qr: {
         type: String,

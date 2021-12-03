@@ -1,27 +1,17 @@
 <template>
     <Text
-        placeholder="Vorname"
+        :label="t('app.labels.given-name')"
         v-model="form.positions[0].attendee_name_parts.given_name"
         type="text"
         class="w-full"
         name="given-name"
-        :state="state"
+        :state="givenNameState"
     />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-
 import { Text } from '@/components';
 import { form } from '@/modules/booking';
-
-const state = computed(() => {
-    if (form.errors['positions.0.attendee_name_parts.given_name']) {
-        return false;
-    }
-
-    if (form.positions[0].attendee_name_parts.given_name?.length >= 2) {
-        return true;
-    }
-});
+import { givenNameState } from '@/modules/validation';
+import { t } from '@/modules/i18n';
 </script>
