@@ -1,6 +1,7 @@
 <template>
-    <div class="relative text-black">
+    <div class="relative text-black" :class="useAttrs().class">
         <input
+            v-bind="{ ...useAttrs(), class: '' }"
             v-model="model"
             @input="updateInput"
             @focusin="focus = true"
@@ -30,7 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, ref, computed } from 'vue';
+import { defineEmits, ref, computed, useAttrs } from 'vue';
+
 const props = defineProps({
     modelValue: {
         type: [String, Number],
