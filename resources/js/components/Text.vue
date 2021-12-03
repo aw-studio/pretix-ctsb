@@ -27,6 +27,36 @@
         >
             {{ label }}
         </div>
+        <div
+            class="absolute flex items-center justify-center w-4 h-4 rounded-full pointer-events-none  top-4 right-4"
+            :class="{
+                'pulse bg-gray': state != true && state != false,
+                'bg-green text-white': state == true,
+                'bg-red text-white': state == false,
+            }"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="-5 -7 24 24"
+                class="w-3 h-3 fill-current"
+                v-if="state == true"
+            >
+                <path
+                    d="M5.486 9.73a.997.997 0 0 1-.707-.292L.537 5.195A1 1 0 1 1 1.95 3.78l3.535 3.535L11.85.952a1 1 0 0 1 1.415 1.414L6.193 9.438a.997.997 0 0 1-.707.292z"
+                ></path>
+            </svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="-6 -6 24 24"
+                width="24"
+                class="w-3 h-3 fill-current"
+                v-if="state == false"
+            >
+                <path
+                    d="M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z"
+                ></path>
+            </svg>
+        </div>
     </div>
 </template>
 
@@ -69,3 +99,19 @@ const updateInput = event => {
     emit('update:modelValue', event.target.value);
 };
 </script>
+
+<style>
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(1.5);
+        opacity: 0.2;
+    }
+}
+.pulse {
+    animation: pulse 1s linear infinite;
+}
+</style>
