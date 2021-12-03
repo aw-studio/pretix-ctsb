@@ -70,10 +70,9 @@ class OrderController
 
         return Redirect::route('success', [
                 'code' => $response->json()['positions'][0]['secret'],
-                ])
-                ->with([
-                    'downloads' => $response->json()['downloads'],
-                    'event' => $event
+                'event' => $event
+            ])->with([
+                'downloads' => $response->json()['downloads']
             ]);
     }
 

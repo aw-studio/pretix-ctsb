@@ -11,14 +11,15 @@ class AppController
     public function __invoke(
         string $organizers,
         string $event,
-        int $subevent,
+        int $subevent = null,
     ) {
-        if (! $config = $this->getConfig(
-            $organizers,
-            $event,
-            $subevent,
+        if (empty(
+            $config = $this->getConfig($organizers,$event)
         )) {
             abort(404);
+        }
+        if(!is_null($subevent)){
+            $config['subevent'] = $subevent;
         }
         
         return Inertia::render('App', [
@@ -27,39 +28,25 @@ class AppController
         ]);
     }
 
-    public function success(string $code,)
+    /**
+     * Get the event config.
+     *
+     * @param string $organizers
+     * @param string $event
+     * @return array
+     */
+    private function getConfig(string $organizers,string $event): array
     {
-        $options = new QROptions([
-            'version'    => 5,
-            'outputType' => QRCode::OUTPUT_MARKUP_SVG,
-            'eccLevel'   => QRCode::ECC_L,
-        ]);
-
-        // invoke a fresh QRCode instance
-        $qrcode = new QRCode($options);
-
-        // and dump the output
-        return Inertia::render('Success', [
-            'qr' => $qrcode->render($code),
-            'code' => $code,
-        ]);
-    }
-
-    private function getConfig(
-        string $organizers,
-        string $event,
-        int $subevent,
-    ) {
-        $configs = json_decode(env('CTSB_EVENTS'), true);
+        $configs = collect(json_decode(env('CTSB_EVENTS'), true));
 
         foreach ($configs as $config) {
             if (
                 $config['organizers'] == $organizers &&
-                $config['event'] == $event &&
-                $config['subevent'] == $subevent
+                $config['event'] == $event
             ) {
                 return $config;
             }
         }
+        return [];
     }
 }
