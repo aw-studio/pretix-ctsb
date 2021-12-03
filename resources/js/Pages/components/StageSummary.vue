@@ -79,3 +79,17 @@ const transformFormdata = data => {
     return { ...data };
 };
 </script>
+
+<style>
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.rotate {
+    animation: rotating 0.7s linear infinite;
+}
+</style>

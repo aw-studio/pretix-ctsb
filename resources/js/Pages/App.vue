@@ -15,8 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, watch, computed, onBeforeMount } from 'vue';
-import { form, initForm, TInitFormConfig, TAnswer } from '@/modules/booking';
+import { PropType, onBeforeMount } from 'vue';
+import { form, initForm, TInitFormConfig } from '@/modules/booking';
 
 import { stageEmailValid, stageFormValid } from '@/modules/validation';
 import { Tabs, Tab } from '@/components';
@@ -35,64 +35,7 @@ const props = defineProps({
     },
 });
 
-watch(
-    () => form.email,
-    email => {
-        form.positions[0].attendee_email = email;
-    }
-);
-
-const getAttr = (key: string) => {
-    let question = questions.value.find(
-        question => question.question_identifier == key
-    );
-    return form.positions[0].answers.find(
-        (answer: TAnswer) => answer.question == question.question
-    );
-};
-
-const questions = computed(() => {
-    return props.config.questions;
-});
-
-const formFinished = computed(() => {
-    if (form.positions[0].attendee_name_parts.given_name?.length < 2) {
-        return false;
-    }
-    if (form.positions[0].attendee_name_parts.family_name?.length < 2) {
-        return false;
-    }
-    if (getAttr('phone').answer == null) {
-        return false;
-    }
-    if (getAttr('street-no').answer == null) {
-        return false;
-    }
-    if (getAttr('zip-city').answer == null) {
-        return false;
-    }
-    if (getAttr('birthdate').answer == null) {
-        return false;
-    }
-
-    return true;
-});
-
 onBeforeMount(() => {
     initForm(props.config);
 });
 </script>
-
-<style>
-@keyframes rotating {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-.rotate {
-    animation: rotating 0.7s linear infinite;
-}
-</style>

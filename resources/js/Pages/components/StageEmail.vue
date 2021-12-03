@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue';
 import { Text, Error } from '@/components';
 import { t } from '@/modules/i18n';
 import { form } from '@/modules/booking';
@@ -34,4 +35,11 @@ import {
     emailState,
     emailConfirmationState,
 } from '@/modules/validation';
+
+watch(
+    () => form.email,
+    email => {
+        form.positions[0].attendee_email = email;
+    }
+);
 </script>
