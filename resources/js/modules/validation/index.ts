@@ -1,4 +1,4 @@
-import { computed } from "vue";
+import { computed, watch, ref } from "vue";
 import { form, getAttr } from '@/modules/booking';
 
 
@@ -51,15 +51,19 @@ export const givenNameState = computed(() => {
 
     let attribute = form.positions[0].attendee_name_parts.given_name;
 
+    if (attribute == null ||  attribute == '') {
+        return null;
+    }
+
     if(containsDigits(attribute)){
         return false;
     }
 
-    if (attribute?.length >= 2) {
-        return true;
+    if (attribute?.length < 2 ) {
+        return null;
     }
+    return true;
 });
-
 export const familyNameState = computed(() => {
     if (form.errors['positions.0.attendee_name_parts.family_name']) {
         return false;
@@ -75,8 +79,6 @@ export const familyNameState = computed(() => {
         return true;
     }
 });
-
-
 export const streetNoState = computed(() => {
     // the street is valid if
     let street = getAttr('street-no').answer;
@@ -117,7 +119,15 @@ export const cityState =(city) => {
     
     return city.toString().length >= 2;
 };
+import { zip, city, zipCity} from '@/modules/booking/state';
+export const zipCityState = ref(null);
 
+watch(
+    () => zipCity.value,
+    value => {
+        zipCityState.value =  zipState(zip.value) && cityState(city.value)
+    }
+);
 
 export const phoneState = computed(() => {
     if (getAttr('phone').answer == null || getAttr('phone').answer == '') {
@@ -139,11 +149,104 @@ export const phoneState = computed(() => {
     return true
 });
 
+
+const validDayNumbers = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+    '25',
+    '26',
+    '27',
+    '28',
+    '29',
+    '30',
+    '31',
+];
+const validMonthNumbers = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+];
+
+export const dayState = (day) => {
+    if (day?.toString().length == 2) {
+        return validDayNumbers.includes(day) ? true : false;
+    }
+    if (day?.toString().length > 2 || day?.toString().length == 1) {
+        return false;
+    }
+};
+export const monthState= (month) => {
+    if (month?.toString().length == 2) {
+        return validMonthNumbers.includes(month) ? true : false;
+    }
+    if (
+        month?.toString().length > 2 ||
+        month?.toString().length == 1
+    ) {
+        return false;
+    }
+};
+export const yearState = (year) => {
+    if (year?.toString().length == 4) {
+        return parseInt(year) > 1900 && parseInt(year) < 2020
+            ? true
+            : false;
+    }
+    if (
+        year?.toString().length != 4 &&
+        year?.toString().length > 0
+    ) {
+        return false;
+    }
+};
+
+import { day, month, year, date} from '@/modules/booking/state';
+export const birthdateState = ref(null);
+
+watch(
+    () => date.value,
+    value => {
+        birthdateState.value =  dayState(day.value) && monthState(month.value) && yearState(year.value)
+    }
+);
+
+
 /**
  * The form stage is valid
  */
 export const stageFormValid = computed(()=>{
-
+    return givenNameState.value && familyNameState.value && streetNoState.value && phoneState.value && zipCityState.value && birthdateState.value
 });
 
 export const hasAtLeastNDigits = (val: any, digits: number ) => {

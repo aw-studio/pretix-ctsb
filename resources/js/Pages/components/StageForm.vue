@@ -10,7 +10,7 @@
     <!-- TODO: Land -->
 
     <h3 class="pt-6 text-sm font-semibold">Geburtstag</h3>
-    <Date v-model="getAttr('birthdate').answer" />
+    <Date />
 
     <h3 class="pt-8 text-sm font-semibold text">Optional</h3>
 
@@ -19,8 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import { StreetNo, ZipCity, Date } from '@/components';
-
-import { getAttr } from '@/modules/booking';
-import { Pass, CWA, GivenName, FamilyName, Phone } from '@/components';
+import {
+    StreetNo,
+    ZipCity,
+    Date,
+    Pass,
+    CWA,
+    GivenName,
+    FamilyName,
+    Phone,
+} from '@/components';
 </script>

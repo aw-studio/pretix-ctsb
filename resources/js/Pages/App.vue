@@ -7,7 +7,7 @@
             <Tab title="2/3" :enabled="true">
                 <StageForm />
             </Tab>
-            <Tab title="3/3" :enabled="formFinished" :hideArrows="true">
+            <Tab title="3/3" :enabled="stageFormValid" :hideArrows="true">
                 <StageSummary :event="event" />
             </Tab>
         </Tabs>
@@ -18,7 +18,7 @@
 import { PropType, watch, computed, onBeforeMount } from 'vue';
 import { form, initForm, TInitFormConfig, TAnswer } from '@/modules/booking';
 
-import { stageEmailValid } from '@/modules/validation';
+import { stageEmailValid, stageFormValid } from '@/modules/validation';
 import { Tabs, Tab } from '@/components';
 import StageEmail from './components/StageEmail.vue';
 import StageForm from './components/StageForm.vue';
