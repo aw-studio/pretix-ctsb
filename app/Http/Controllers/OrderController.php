@@ -93,8 +93,8 @@ class OrderController
 
         $list = [];
 
-        foreach ($bookings as $booking) {
-            $res = new CtsbBookingResource($booking[0]);
+        foreach ($bookings[0] as $booking) {
+            $res = new CtsbBookingResource($booking);
 
             $response = $this->api->post($this->url, $res->toArray($request));
 
@@ -115,8 +115,8 @@ class OrderController
             $qrcode = new QRCode($options);
 
             $list[] = [
-                'given_name'  => $booking[0]['given_name'],
-                'family_name' => $booking[0]['family_name'],
+                'given_name'  => $booking['given_name'],
+                'family_name' => $booking['family_name'],
                 'code'        => ($response->json()['positions'][0]['secret']),
                 'qr'          => $qrcode->render($response->json()['positions'][0]['secret']),
             ];
