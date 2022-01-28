@@ -1,6 +1,6 @@
 <template>
     <div
-        class="sticky top-0 flex items-center justify-between px-4 py-5 text-sm text-white "
+        class="sticky top-0 flex items-center justify-between px-4 py-5 text-sm text-white"
     >
         <button
             v-if="state.selectedIndex > 0"
@@ -30,26 +30,35 @@
     <div ref="childs" class="z-10">
         <div v-if="state.selectedIndex == 0">
             <div
-                class="flex justify-end px-4 mb-4 -mt-4 space-x-2 text-sm text-white "
+                class="flex justify-between px-4 mb-4 -mt-4 text-sm text-white"
             >
-                <button
-                    @click="locale = 'en'"
-                    class="w-12 h-12 font-thin border border-white rounded-full"
-                    :class="{
-                        'opacity-50': locale != 'en',
-                    }"
-                >
-                    EN
-                </button>
-                <button
-                    @click="locale = 'de'"
-                    class="w-12 h-12 font-thin border border-white rounded-full"
-                    :class="{
-                        'opacity-50': locale != 'de',
-                    }"
-                >
-                    DE
-                </button>
+                <div>
+                    <div
+                        class="text-white fill-current"
+                        :style="`background-image: url('${logo}'); width: 120px; height: 48px; background-size: contain; background-repeat: no-repeat;`"
+                        v-if="logo"
+                    ></div>
+                </div>
+                <div class="flex space-x-2">
+                    <button
+                        @click="locale = 'en'"
+                        class="w-12 h-12 font-thin border border-white rounded-full"
+                        :class="{
+                            'opacity-50': locale != 'en',
+                        }"
+                    >
+                        EN
+                    </button>
+                    <button
+                        @click="locale = 'de'"
+                        class="w-12 h-12 font-thin border border-white rounded-full"
+                        :class="{
+                            'opacity-50': locale != 'de',
+                        }"
+                    >
+                        DE
+                    </button>
+                </div>
             </div>
             <Intro />
         </div>
@@ -101,6 +110,13 @@ import { useI18n } from 'vue-i18n';
 const { locale } = useI18n({ useScope: 'global' });
 
 const slots = useSlots();
+
+defineProps({
+    logo: {
+        type: String,
+        default: null,
+    },
+});
 
 const state = reactive<StateInterface>({
     selectedIndex: 0,

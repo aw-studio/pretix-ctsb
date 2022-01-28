@@ -1,8 +1,13 @@
 <template>
     <div class="text-center text-white">
-        <h1 class="text-xl font-semibold leading-tight tracking-wide">
-            {{ t('app.lines.free') }}<br />
-            {{ t('app.lines.corona-test') }}
+        <h1 class="px-4 text-xl font-semibold leading-tight tracking-wide">
+            <template v-if="h1">
+                {{ h1 }}
+            </template>
+            <template v-else>
+                {{ t('app.lines.free') }}<br />
+                {{ t('app.lines.corona-test') }}
+            </template>
         </h1>
         <div class="flex flex-col items-center my-8 space-y-2">
             <Tag>
@@ -52,4 +57,10 @@
 <script setup lang="ts">
 import Tag from '@/components/Tag.vue';
 import { t } from '@/modules/i18n';
+import { usePage } from '@inertiajs/inertia-vue3';
+import { computed } from 'vue';
+
+const h1 = computed(() => {
+    return usePage().props.value.h1;
+});
 </script>

@@ -1,6 +1,6 @@
 <template>
     <form class="flex flex-col h-screen" autocomplete="on" @submit.prevent>
-        <Tabs>
+        <Tabs :logo="logo">
             <Tab title="1/3" :enabled="true">
                 <StageEmail />
             </Tab>
@@ -32,6 +32,10 @@ const props = defineProps({
     event: {
         type: String,
         required: true,
+    },
+    logo: {
+        type: String,
+        default: null,
     },
 });
 

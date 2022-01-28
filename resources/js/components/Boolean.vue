@@ -8,7 +8,7 @@
     >
         <label
             :for="id"
-            class="flex flex-row-reverse flex-wrap items-center justify-between cursor-pointer  hover:border-gray-100"
+            class="flex flex-row-reverse flex-wrap items-center justify-between cursor-pointer hover:border-gray-100"
         >
             <input
                 type="checkbox"
@@ -21,7 +21,7 @@
                 <div class="mb-3 font-bold">{{ label }}</div>
                 <div
                     :class="{
-                        ' text-gray ': !isActive,
+                        ' text-gray-600': !isActive,
                     }"
                 >
                     <slot />
