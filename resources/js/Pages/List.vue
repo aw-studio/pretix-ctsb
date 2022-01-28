@@ -1,6 +1,6 @@
 <template>
     <div v-for="item in list" class="flex bg-white border-b">
-        <div>{{ item.family_name }}, {{ item.given_name }}</div>
+        <div>{{ item.given_name }} {{ item.family_name }}</div>
         <div>
             <img :src="item.qr" class="mx-auto w-52" />
             <div class="text-center text-gray">{{ item.code }}</div>

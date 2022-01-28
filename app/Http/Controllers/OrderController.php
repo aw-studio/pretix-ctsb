@@ -100,7 +100,7 @@ class OrderController
 
             // Determine if the status code is >= 400...
             if ($response->failed()) {
-                logger($response->body());
+                logger($res->toArray($request));
 
                 throw new Exception('failed');
             }

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="{{ mix('/js/app.js') }}" defer></script>
+        @if (array_key_exists('style', $page['props']))
         <style>
             :root {
                 --primary-100: {{ $page['props']['style']['primary'][100] ?: '#ecf4ff' }};
@@ -25,6 +26,7 @@
                 --danger-DEFAULT: {{ $page['props']['style']['danger']['DEFAULT'] ?: '#FF3265'}};
             }
         </style>
+        @endif
     </head>
     <body class=" bg-gradient-to-tr from-blue-400 to-blue-300">
         @inertia

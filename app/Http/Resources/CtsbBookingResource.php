@@ -73,7 +73,7 @@ class CtsbBookingResource extends JsonResource
                             'question_identifier' => 'phone',
                         ],
                         [
-                            'answer'              => $this->resource['pass_id'],
+                            'answer'              => $this->resource['pass_id'] ?: 'a',
                             'option_identifiers'  => [],
                             'options'             => [],
                             'question'            => 28006,
