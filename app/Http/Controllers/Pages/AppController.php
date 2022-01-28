@@ -21,6 +21,7 @@ class AppController
         }
 
         $style = [
+            'font'    => 'Inter',
             'primary' => [
                 100       => '#ecf4ff',
                 200       => '#d2d9f5',

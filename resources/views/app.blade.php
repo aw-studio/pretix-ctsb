@@ -25,6 +25,11 @@
                 --danger-500: {{ $page['props']['style']['danger'][500] ?: '#FF3265'}};
                 --danger-DEFAULT: {{ $page['props']['style']['danger']['DEFAULT'] ?: '#FF3265'}};
             }
+            @if (array_key_exists('font', $page['props']['style']))
+            body{
+                font-family: '{{ $page['props']['style']['font'] ?: 'Inter' }}' !important;
+            }
+            @endif
         </style>
         @endif
     </head>

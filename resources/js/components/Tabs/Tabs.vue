@@ -30,12 +30,12 @@
     <div ref="childs" class="z-10">
         <div v-if="state.selectedIndex == 0">
             <div
-                class="flex justify-between px-4 mb-4 -mt-4 text-sm text-white"
+                class="flex items-center justify-between px-4 mb-4 -mt-4 text-sm text-white"
             >
                 <div>
                     <div
                         class="text-white fill-current"
-                        :style="`background-image: url('${logo}'); width: 120px; height: 48px; background-size: contain; background-repeat: no-repeat;`"
+                        :style="`background-image: url('${logo}'); width: 120px; height: 74px; background-size: contain; background-repeat: no-repeat;`"
                         v-if="logo"
                     ></div>
                 </div>
