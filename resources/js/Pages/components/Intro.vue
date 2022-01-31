@@ -1,9 +1,10 @@
 <template>
     <div class="text-center text-white">
-        <h1 class="px-4 text-xl font-semibold leading-tight tracking-wide">
-            <template v-if="h1">
-                {{ h1 }}
-            </template>
+        <h1
+            class="px-4 text-xl leading-tight tracking-wide"
+            :class="{ 'font-bold uppercase': h1, 'font-semibold': !h1 }"
+        >
+            <span v-if="h1" v-html="h1"> </span>
             <template v-else>
                 {{ t('app.lines.free') }}<br />
                 {{ t('app.lines.corona-test') }}
