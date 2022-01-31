@@ -99,6 +99,7 @@ import {
     provide,
     reactive,
     useSlots,
+    computed,
 } from 'vue';
 
 import { StateInterface } from './state.interface';
@@ -106,6 +107,11 @@ import Button from '@/components/Button.vue';
 import Intro from '@/Pages/components/Intro.vue';
 import { t } from '@/modules/i18n';
 import { useI18n } from 'vue-i18n';
+import { usePage } from '@inertiajs/inertia-vue3';
+
+const browserLocale = computed(() => {
+    return usePage().props.value.locale;
+});
 
 const { locale } = useI18n({ useScope: 'global' });
 
@@ -166,5 +172,6 @@ onBeforeUpdate(() => update());
 
 onMounted(() => {
     selectTab(0);
+    locale.value = browserLocale.value;
 });
 </script>

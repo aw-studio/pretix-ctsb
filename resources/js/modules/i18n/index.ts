@@ -1,5 +1,6 @@
 import { createI18n, TranslateOptions, useI18n } from 'vue-i18n'
 
+
 const w: any = window;
 const messages = w.i18n;
 

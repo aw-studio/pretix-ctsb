@@ -36,7 +36,12 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+        $acceptLang = ['de', 'en'];
+        $locale = in_array($locale, $acceptLang) ? $locale : 'de';
+
         return array_merge(parent::share($request), [
+            'locale'    => $locale,
             'downloads' => fn () => $request->session()->get('downloads'),
         ]);
     }
