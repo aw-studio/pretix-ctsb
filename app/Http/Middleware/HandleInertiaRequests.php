@@ -36,7 +36,10 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
-        $locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+        $locale = 'de';
+        if (array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
+            $locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+        }
         $acceptLang = ['de', 'en'];
         $locale = in_array($locale, $acceptLang) ? $locale : 'de';
 
