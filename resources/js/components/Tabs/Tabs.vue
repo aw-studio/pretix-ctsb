@@ -45,6 +45,7 @@
                         class="w-12 h-12 font-thin border border-white rounded-full"
                         :class="{
                             'opacity-50': locale != 'en',
+                            'bg-white text-blue-600 font-bold': locale == 'en',
                         }"
                     >
                         EN
@@ -54,6 +55,7 @@
                         class="w-12 h-12 font-thin border border-white rounded-full"
                         :class="{
                             'opacity-50': locale != 'de',
+                            'bg-white text-blue-600 font-bold': locale == 'de',
                         }"
                     >
                         DE
