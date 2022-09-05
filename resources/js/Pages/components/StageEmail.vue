@@ -21,6 +21,7 @@
     <Error v-if="!emailConfirmed">
         {{ t('app.errors.email-confirmed') }}
     </Error>
+
     <p class="py-2 text-center">
         <strong>{{ t('app.lines.attention') }}:</strong>
         {{ t('app.lines.only-sending-to-this-email') }}

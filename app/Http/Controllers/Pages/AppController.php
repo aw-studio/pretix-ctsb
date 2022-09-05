@@ -2,10 +2,29 @@
 
 namespace App\Http\Controllers\Pages;
 
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class AppController
 {
+    /**
+     * API client.
+     *
+     * @var string
+     */
+    protected $api;
+
+    /**
+     * Create a new OrderController instance.
+     */
+    public function __construct()
+    {
+        $this->api = Http::withHeaders([
+            'Authorization' => 'Token '.config('pretix.api.token'),
+            'Content-Type'  => 'application/json',
+        ]);
+    }
+
     public function __invoke(
         string $organizers,
         string $event,
@@ -61,12 +80,26 @@ class AppController
             $h1 = env($config['h1']);
         }
 
+        // get eligibility options
+        $url = config('pretix.api.url').$event.'/questions/';
+
+        $response = $this->api->get($url);
+
+        $eligibility = (collect($response->json()['results'])->filter(function ($result) {
+            if (array_key_exists('de', $result['question'])) {
+                return $result['question']['de'] == 'Anspruchsgrund';
+            }
+
+            return false;
+        })->first());
+
         return Inertia::render('App', [
-            'config' => $config,
-            'event'  => $event,
-            'style'  => $style,
-            'logo'   => $logo,
-            'h1'     => $h1,
+            'config'      => $config,
+            'event'       => $event,
+            'style'       => $style,
+            'logo'        => $logo,
+            'h1'          => $h1,
+            'eligibility' => $eligibility,
         ]);
     }
 

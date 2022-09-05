@@ -17,7 +17,6 @@ watch(
     }
 );
 
-
 export const year = ref(null);
 export const month = ref(null);
 export const day = ref(null);
@@ -41,6 +40,6 @@ export const date = computed(() => {
 watch(
     () => date.value,
     value => {
-        getAttr('birthdate').answer = value
+        getAttr('birthdate').answer = value;
     }
 );

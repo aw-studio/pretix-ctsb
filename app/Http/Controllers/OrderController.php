@@ -65,6 +65,7 @@ class OrderController
         $response = $this->api->post($this->url, $validated);
 
         // Determine if the status code is >= 400...
+        logger($validated);
         if ($response->failed()) {
             logger($response->body());
 

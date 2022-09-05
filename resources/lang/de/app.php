@@ -19,6 +19,7 @@ return [
         'dd'            => 'TT',
         'mm'            => 'MM',
         'yyyy'          => 'YYYY',
+        'eligibility'   => 'Anspruchsgrund',
     ],
 
     'buttons' => [
@@ -50,6 +51,7 @@ return [
         'consent'                    => 'Mit dem Absenden bestätige ich, dass die für die Durchführung eines kostenfreien Antigen-Schnelltests auf der Grundlage der Testverordnung (TestVO) des Bundesministeriums für Gesundheit eingehalten werden. Ich möchte mein Ergebnis per E-Mail erhalten.',
         'booking-successful'         => 'Deine Buchung war erfolgreich!',
         'booking-successful-text'    => 'Wir haben dir deinen QR-Code an deine angegebene E-Mail versendet. Mit diesem Code kannst du dich an unserer Station testen lassen.',
+        'eligibility'                => 'Anspruchsgrund',
     ],
 
     'errors' => [

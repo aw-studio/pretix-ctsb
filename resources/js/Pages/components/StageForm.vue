@@ -12,6 +12,13 @@
     <h3 class="pt-6 text-sm font-semibold">{{ t('app.lines.birthday') }}</h3>
     <Date />
 
+    <template v-if="getAttr('buergertest-grund')">
+        <h3 class="pt-6 text-sm font-semibold">
+            {{ t('app.lines.eligibility') }}
+        </h3>
+        <Eligibility />
+    </template>
+
     <h3 class="pt-8 text-sm font-semibold text">
         {{ t('app.lines.optional') }}
     </h3>
@@ -30,7 +37,9 @@ import {
     GivenName,
     FamilyName,
     Phone,
+    Eligibility,
 } from '@/components';
 
 import { t } from '@/modules/i18n';
+import { getAttr } from '@/modules/booking';
 </script>
