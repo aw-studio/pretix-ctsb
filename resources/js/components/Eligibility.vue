@@ -21,20 +21,17 @@ const { locale } = useI18n({ useScope: 'global' });
 
 const options = computed(() => {
     return eligibility.value.options?.map(option => {
+        console.log(locale);
+
         return {
             value: option.id,
-            label: getAnswer(option),
+            label:
+                option.answer[locale.value as any] ||
+                option.answer['de'] ||
+                option.answer['en'],
         };
     });
 });
-
-const getAnswer = option => {
-    return (
-        option.answer[locale as any] ||
-        option.answer['de'] ||
-        option.answer['en']
-    );
-};
 
 const model = ref();
 
@@ -45,7 +42,10 @@ watch(
         if (id) {
             let option = eligibility.value.options.find(item => item.id == id);
 
-            getAttr('buergertest-grund').answer = getAnswer(option);
+            getAttr('buergertest-grund').answer =
+                option.answer[locale.value as any] ||
+                option.answer['de'] ||
+                option.answer['en'];
             getAttr('buergertest-grund').options = [id];
             getAttr('buergertest-grund').option_identifiers = [
                 option.identifier,
