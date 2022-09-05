@@ -84,7 +84,7 @@ class OrderController
 
     public function import(Request $request)
     {
-        $this->setUrl('mobil4');
+        $this->setUrl('shop');
 
         $request->validate([
             'file' => 'required',
